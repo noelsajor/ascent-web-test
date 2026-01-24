@@ -222,6 +222,10 @@ section {
     overflow: hidden;
 }
 
+.hero-inner {
+    padding: 8rem 0;
+}
+
 .bubble-canvas {
     position: absolute;
     top: 0;
