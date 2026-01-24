@@ -85,4 +85,140 @@ export function BubbleBackground({ children, interactive = true }) {
         // Draw main bubble
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        ctx.fillSty
+        ctx.fillStyle = `rgba(233, 208, 144, ${this.opacity})`
+        ctx.fill()
+        
+        // Add subtle highlight
+        const highlight = ctx.createRadialGradient(
+          this.x - this.radius * 0.3,
+          this.y - this.radius * 0.3,
+          0,
+          this.x - this.radius * 0.3,
+          this.y - this.radius * 0.3,
+          this.radius * 0.6
+        )
+        highlight.addColorStop(0, `rgba(243, 225, 181, ${this.opacity * 0.8})`)
+        highlight.addColorStop(1, 'rgba(243, 225, 181, 0)')
+        
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+        ctx.fillStyle = highlight
+        ctx.fill()
+      }
+    }
+
+    function resizeCanvas() {
+      width = container.offsetWidth
+      height = container.offsetHeight
+      canvas.width = width
+      canvas.height = height
+      mouseX = width / 2
+      mouseY = height / 2
+    }
+
+    function initBubbles() {
+      bubbles = []
+      // FEWER bubbles but much more visible (was /8000, now /15000)
+      const bubbleCount = Math.max(15, Math.floor((width * height) / 15000))
+      console.log('🫧 Creating', bubbleCount, 'bubbles')
+      
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = new Bubble()
+        // Spread bubbles throughout the screen initially
+        bubble.y = Math.random() * height
+        bubbles.push(bubble)
+      }
+    }
+
+    let lastTime = 0
+    function animate(currentTime) {
+      const deltaTime = Math.min(currentTime - lastTime, 50) // Cap delta time
+      lastTime = currentTime
+      
+      // Clear with slight fade for trail effect
+      ctx.fillStyle = 'rgba(12, 13, 15, 0.05)'
+      ctx.fillRect(0, 0, width, height)
+      
+      bubbles.forEach(bubble => {
+        if (!prefersReducedMotion) {
+          bubble.update(deltaTime)
+        }
+        bubble.draw()
+      })
+      
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    const handleMouseMove = (e) => {
+      if (!interactive) return
+      const rect = canvas.getBoundingClientRect()
+      mouseX = e.clientX - rect.left
+      mouseY = e.clientY - rect.top
+    }
+
+    const handleMouseLeave = () => {
+      mouseX = width / 2
+      mouseY = height / 2
+    }
+
+    if (interactive) {
+      canvas.addEventListener('mousemove', handleMouseMove)
+      canvas.addEventListener('mouseleave', handleMouseLeave)
+    }
+    
+    // Initialize after a brief delay
+    setTimeout(() => {
+      resizeCanvas()
+      initBubbles()
+      animate(0)
+    }, 50)
+
+    let resizeTimeout
+    const handleResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        resizeCanvas()
+        initBubbles()
+      }, 250)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      if (interactive) {
+        canvas.removeEventListener('mousemove', handleMouseMove)
+        canvas.removeEventListener('mouseleave', handleMouseLeave)
+      }
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [interactive])
+
+  return (
+    <div 
+      ref={containerRef}
+      style={{
+        position: 'relative',
+        width: '100%',
+        minHeight: '100vh',
+        background: 'var(--bg-0)'
+      }}
+    >
+      <canvas 
+        ref={canvasRef}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        {children}
+      </div>
+    </div>
+  )
+}
