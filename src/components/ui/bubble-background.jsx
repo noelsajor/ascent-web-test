@@ -2,10 +2,12 @@ import { useEffect, useRef } from 'react'
 
 export function BubbleBackground({ children, interactive = true }) {
   const canvasRef = useRef(null)
+  const containerRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    const container = containerRef.current
+    if (!canvas || !container) return
 
     const ctx = canvas.getContext('2d')
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -61,7 +63,6 @@ export function BubbleBackground({ children, interactive = true }) {
     }
 
     function resizeCanvas() {
-      const container = canvas.parentElement
       width = container.offsetWidth
       height = container.offsetHeight
       canvas.width = width
@@ -103,9 +104,11 @@ export function BubbleBackground({ children, interactive = true }) {
       canvas.addEventListener('mousemove', handleMouseMove)
     }
     
-    resizeCanvas()
-    initBubbles()
-    animate(0)
+    setTimeout(() => {
+      resizeCanvas()
+      initBubbles()
+      animate(0)
+    }, 100)
 
     let resizeTimeout
     const handleResize = () => {
@@ -126,9 +129,29 @@ export function BubbleBackground({ children, interactive = true }) {
   }, [interactive])
 
   return (
-    <div className="bubble-background-container">
-      <canvas ref={canvasRef} className="bubble-canvas"></canvas>
-      {children}
+    <div 
+      ref={containerRef}
+      style={{
+        position: 'relative',
+        width: '100%',
+        minHeight: '100vh'
+      }}
+    >
+      <canvas 
+        ref={canvasRef}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        {children}
+      </div>
     </div>
   )
 }
