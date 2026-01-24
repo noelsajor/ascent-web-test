@@ -3,7 +3,7 @@ import { BubbleBackground } from './ui/bubble-background'
 function Hero() {
   return (
     <BubbleBackground interactive={true}>
-      <section className="hero" id="home">
+      <section className="hero-inner" id="home">
         <div className="container">
           <div className="hero-content">
             <div className="hero-badge">
