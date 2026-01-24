@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
 export function BubbleBackground({ children, interactive = true }) {
-  const canvasRef = useRef(null)
   const containerRef = useRef(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
@@ -28,7 +27,7 @@ export function BubbleBackground({ children, interactive = true }) {
         position: 'relative',
         width: '100%',
         minHeight: '100vh',
-        background: 'var(--bg-0)',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
         overflow: 'hidden'
       }}
     >
@@ -77,77 +76,58 @@ function AnimatedBubbles({ width, height, interactive }) {
   useEffect(() => {
     if (!width || !height) return
 
-    // Initialize bubbles
-    const initialBubbles = Array.from({ length: 15 }, (_, i) => ({
+    const initialBubbles = Array.from({ length: 20 }, (_, i) => ({
       id: i,
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      radius: Math.random() * 40 + 20,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      radius: Math.random() * 50 + 30,
       targetX: Math.random() * width,
       targetY: Math.random() * height
     }))
 
     setBubbles(initialBubbles)
 
-    // Animation loop
     const animate = () => {
       setBubbles(prev => prev.map(bubble => {
         let { x, y, vx, vy, targetX, targetY, radius } = bubble
 
-        // Spring physics towards target
         const dx = targetX - x
         const dy = targetY - y
         const dist = Math.sqrt(dx * dx + dy * dy)
 
         if (dist > 5) {
-          vx += dx * 0.0001
-          vy += dy * 0.0001
+          vx += dx * 0.0002
+          vy += dy * 0.0002
         } else {
-          // New random target
           targetX = Math.random() * width
           targetY = Math.random() * height
         }
 
-        // Mouse interaction
         if (interactive) {
           const mouseDistance = Math.sqrt(
             Math.pow(mousePos.x - x, 2) + Math.pow(mousePos.y - y, 2)
           )
-          const minDistance = 150
+          const minDistance = 200
 
           if (mouseDistance < minDistance) {
             const angle = Math.atan2(y - mousePos.y, x - mousePos.x)
             const force = (minDistance - mouseDistance) / minDistance
-            vx += Math.cos(angle) * force * 0.5
-            vy += Math.sin(angle) * force * 0.5
+            vx += Math.cos(angle) * force * 0.8
+            vy += Math.sin(angle) * force * 0.8
           }
         }
 
-        // Apply velocity with damping
-        vx *= 0.95
-        vy *= 0.95
+        vx *= 0.98
+        vy *= 0.98
         x += vx
         y += vy
 
-        // Bounce off walls
-        if (x < radius) {
-          x = radius
-          vx = Math.abs(vx)
-        }
-        if (x > width - radius) {
-          x = width - radius
-          vx = -Math.abs(vx)
-        }
-        if (y < radius) {
-          y = radius
-          vy = Math.abs(vy)
-        }
-        if (y > height - radius) {
-          y = height - radius
-          vy = -Math.abs(vy)
-        }
+        if (x < radius) { x = radius; vx = Math.abs(vx) }
+        if (x > width - radius) { x = width - radius; vx = -Math.abs(vx) }
+        if (y < radius) { y = radius; vy = Math.abs(vy) }
+        if (y > height - radius) { y = height - radius; vy = -Math.abs(vy) }
 
         return { ...bubble, x, y, vx, vy, targetX, targetY }
       }))
@@ -201,9 +181,9 @@ function AnimatedBubbles({ width, height, interactive }) {
             cx={bubble.x}
             cy={bubble.y}
             r={bubble.radius}
-            fill="rgba(233, 208, 144, 0.6)"
+            fill="rgba(255, 255, 255, 0.15)"
             style={{
-              transition: 'cx 0.1s, cy 0.1s'
+              transition: 'cx 0.05s, cy 0.05s'
             }}
           />
         ))}
