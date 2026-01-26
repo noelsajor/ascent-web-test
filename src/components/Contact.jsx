@@ -1,13 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    brand: '',
-    product: '',
-    challenge: '',
-    email: ''
-  })
   const sectionRef = useRef(null)
 
   useEffect(() => {
@@ -32,33 +25,15 @@ function Contact() {
     return () => revealObserver.disconnect()
   }, [])
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    // Add your form submission logic here
-    alert('Thank you! Form submitted successfully.')
-  }
-
   return (
     <section className="contact-form-section" id="contact" ref={sectionRef}>
       <div className="container">
         <div className="section-header reveal-item">
           <h2>Book a Call</h2>
-          <p>Fill out the form below and book your call directly. We'll review and send an estimate after.</p>
+          <p>Schedule a time directly on our calendar below.</p>
         </div>
-        <div className="form-wrapper">
+        <div className="form-wrapper reveal-item">
           <div className="calendly-inline-widget" data-url="https://calendly.com/YOUR_LINK/30min" style={{ minWidth: '320px', height: '700px' }}></div>
-          <div className="calendly-placeholder reveal-item">
-            <p><strong>Calendly Embed Here</strong></p>
-            <p style={{ marginTop: 'var(--spacing-sm)' }}>After submitting, you'll be able to book your call directly on this page.</p>
-          </div>
         </div>
       </div>
     </section>
