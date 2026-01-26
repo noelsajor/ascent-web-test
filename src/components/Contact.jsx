@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-const CALENDLY_URL = 'https://calendly.com/https://calendly.com/noelsajor/30min' //
+const CALENDLY_URL = 'https://calendly.com/https://calendly.com/noelsajor/30min' // 
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -11,10 +11,7 @@ function Contact() {
     email: ''
   })
 
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
   const sectionRef = useRef(null)
-  const calendlyWrapRef = useRef(null)
 
   // Reveal animation (your existing code)
   useEffect(() => {
@@ -59,25 +56,17 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Form submitted:', formData)
-    setIsSubmitted(true)
-
-    // optional: scroll user to the calendly widget area after submit
-    setTimeout(() => {
-      calendlyWrapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 150)
+    // Add your form submission logic here
+    alert('Thank you! Form submitted successfully.')
   }
 
-  // Build prefill + extra info (UTM-like) for Calendly
+  // Prefill Calendly as user types
   const calendlyUrl = (() => {
     const url = new URL(CALENDLY_URL)
 
-    // Prefill fields
     if (formData.name) url.searchParams.set('name', formData.name)
     if (formData.email) url.searchParams.set('email', formData.email)
 
-    // Put your extra context into a single text field Calendly supports:
-    // "a1" is a custom "answer" slot Calendly can map to questions (depending on setup),
-    // but even if not mapped, it’s still handy as a single blob you can capture via your event workflows.
     const notes = [
       formData.brand ? `Brand/Website: ${formData.brand}` : '',
       formData.product ? `Sells: ${formData.product}` : '',
@@ -167,36 +156,15 @@ function Contact() {
             </button>
           </form>
 
-          <div className="calendly-placeholder reveal-item" ref={calendlyWrapRef}>
-            {!isSubmitted && (
-              <>
-                <p><strong>Book your call (step 2)</strong></p>
-                <p style={{ marginTop: 'var(--spacing-sm)' }}>
-                  Submit the form first — then you can book your call right here.
-                </p>
-              </>
-            )}
-
-            {/* Inline Calendly */}
+          <div className="calendly-placeholder reveal-item">
             <div
               className="calendly-inline-widget"
               data-url={calendlyUrl}
               style={{
                 minWidth: 320,
-                height: 700,
-                marginTop: 'var(--spacing-md)',
-                opacity: isSubmitted ? 1 : 0.35,
-                pointerEvents: isSubmitted ? 'auto' : 'none',
-                transition: 'opacity 0.25s ease'
+                height: 700
               }}
             />
-
-            {/* Optional small helper when locked */}
-            {!isSubmitted && (
-              <p style={{ marginTop: 'var(--spacing-sm)', fontSize: '0.95em', opacity: 0.8 }}>
-                Tip: once you submit, the calendar unlocks and your name/email will be prefilled.
-              </p>
-            )}
           </div>
         </div>
       </div>
