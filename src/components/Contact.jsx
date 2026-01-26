@@ -54,65 +54,7 @@ function Contact() {
           <p>Fill out the form below and book your call directly. We'll review and send an estimate after.</p>
         </div>
         <div className="form-wrapper">
-          <form className="contact-form reveal-item" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Your Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                placeholder="Full name" 
-                value={formData.name}
-                onChange={handleChange}
-                required 
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="brand">Brand / Website</label>
-              <input 
-                type="text" 
-                id="brand" 
-                name="brand" 
-                placeholder="yourbrand.com or brand name"
-                value={formData.brand}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="product">What do you sell?</label>
-              <input 
-                type="text" 
-                id="product" 
-                name="product" 
-                placeholder="Skincare, apparel, home goods, etc."
-                value={formData.product}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="challenge">Biggest challenge right now</label>
-              <textarea 
-                id="challenge" 
-                name="challenge" 
-                placeholder="What's overwhelming you or holding you back?"
-                value={formData.challenge}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                placeholder="you@email.com" 
-                value={formData.email}
-                onChange={handleChange}
-                required 
-              />
-            </div>
-            <button type="submit" className="btn" style={{ width: '100%' }}>Submit & Book Call</button>
-          </form>
+          <div className="calendly-inline-widget" data-url="https://calendly.com/YOUR_LINK/30min" style={{ minWidth: '320px', height: '700px' }}></div>
           <div className="calendly-placeholder reveal-item">
             <p><strong>Calendly Embed Here</strong></p>
             <p style={{ marginTop: 'var(--spacing-sm)' }}>After submitting, you'll be able to book your call directly on this page.</p>
