@@ -33,21 +33,21 @@ function Portfolio() {
       id: 'nuud-pleasures',
       tags: ['Wellness', 'E-commerce', 'Brand'],
       title: 'NUUD Pleasures',
-      description: 'Sexual enhancement and wellness products.',
+      description: 'End-to-end brand architecture and Shopify build. We developed a compliance-friendly content strategy that navigates sensitive ad policies while building community through education on intimacy and adaptogens.',
       url: 'https://nuudpleasures.com/'
     },
     {
       id: 'strike',
       tags: ['Legal THC', 'E-commerce', 'Brand'],
       title: 'Strike',
-      description: 'Legal THC products.',
+      description: 'Launched the digital flagship for this premium legal THC brand. Focused on high-impact visual storytelling and a conversion-optimized user flow that educates customers on product quality and safety.',
       url: 'https://strikebrands.co/'
     },
     {
       id: 'sana-honey',
       tags: ['Supplements', 'Health', 'Brand'],
       title: 'SANA Honey',
-      description: 'Honey-based supplements.',
+      description: 'Refreshed the e-commerce experience to highlight the unique honey-based form factor. Implemented a subscription-first approach and produced lifestyle content that positioned the brand as a daily wellness essential.',
       url: 'https://www.sanahoney.com/'
     }
   ]
