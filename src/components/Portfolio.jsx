@@ -30,40 +30,25 @@ function Portfolio() {
 
   const portfolioItems = [
     {
-      id: 'clean-skincare',
-      tags: ['Brand', 'Content', 'Shopify'],
-      title: 'Skincare DTC Brand',
-      description: 'Complete brand creation, packaging system, Shopify build, and content strategy. From zero to launch with consistent posting and product content systems.'
+      id: 'nuud-pleasures',
+      tags: ['Wellness', 'E-commerce', 'Brand'],
+      title: 'NUUD Pleasures',
+      description: 'Sexual enhancement and wellness products.',
+      url: 'https://nuudpleasures.com/'
     },
     {
-      id: 'wellness-launch',
-      tags: ['Brand', 'Social', 'TikTok Shop'],
-      title: 'Wellness Product Launch',
-      description: 'Brand identity, TikTok Shop setup, live shopping content, and daily social execution. Built to sell through content from day one.'
+      id: 'strike',
+      tags: ['Legal THC', 'E-commerce', 'Brand'],
+      title: 'Strike',
+      description: 'Legal THC products.',
+      url: 'https://strikebrands.co/'
     },
     {
-      id: 'home-goods',
-      tags: ['Content', 'Social', 'Creative'],
-      title: 'Home Goods Brand',
-      description: 'Visual refresh, product photography direction, ongoing content creation, and social media management. Consistent execution with brand clarity.'
-    },
-    {
-      id: 'fashion-accessories',
-      tags: ['Brand', 'Shopify', 'Content'],
-      title: 'Fashion Accessories',
-      description: 'Full brand system, Shopify Plus build, content templates, and creative strategy. Designed for scale with content infrastructure.'
-    },
-    {
-      id: 'beverage-relaunch',
-      tags: ['Brand', 'Social'],
-      title: 'Beverage Brand Relaunch',
-      description: 'Complete brand overhaul, packaging redesign, social content strategy, and daily execution across platforms. Premium positioning, consistent output.'
-    },
-    {
-      id: 'tech-accessories',
-      tags: ['TikTok Shop', 'Content', 'Social'],
-      title: 'Tech Accessories Launch',
-      description: 'TikTok Shop optimization, live shopping content creation, product demos, and ongoing social execution. Content built to convert.'
+      id: 'sana-honey',
+      tags: ['Supplements', 'Health', 'Brand'],
+      title: 'SANA Honey',
+      description: 'Honey-based supplements.',
+      url: 'https://www.sanahoney.com/'
     }
   ]
 
@@ -76,7 +61,7 @@ function Portfolio() {
         </div>
         <div className="portfolio-grid">
           {portfolioItems.map(item => (
-            <a key={item.id} href={`#project-${item.id}`} className="portfolio-item reveal-item">
+            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="portfolio-item reveal-item">
               <div className="portfolio-image">Image Preview</div>
               <div className="portfolio-content">
                 <div className="portfolio-tags">
@@ -86,7 +71,7 @@ function Portfolio() {
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <span className="portfolio-link">View Project →</span>
+                <span className="portfolio-link">Visit Website →</span>
               </div>
             </a>
           ))}
