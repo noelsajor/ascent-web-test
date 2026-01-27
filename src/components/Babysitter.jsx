@@ -33,8 +33,12 @@ function Babysitter() {
       <div className="container">
         <div className="babysitter-content reveal-item">
           <h2>You don't need 5 freelancers. You need one team that executes.</h2>
-          <p className="babysitter-subtitle">We're babysitters for small businesses. You hire us so you don't have to think about brand, content, posting, site builds, or creative strategy. We handle it.</p>
+          <p className="babysitter-subtitle">
+            We're babysitters for small businesses. You hire us so you don't have to think about brand, content, posting, site builds, or creative strategy. We handle it.
+          </p>
         </div>
+
+        {/* 
         <div className="takeaway-grid">
           <div className="takeaway-card reveal-item">
             <h3>No More Vendor Juggling</h3>
@@ -49,6 +53,7 @@ function Babysitter() {
             <p>Your brand shows up daily with clarity and quality. No more gaps, no more scrambling for content, no more inconsistency.</p>
           </div>
         </div>
+        */}
       </div>
     </section>
   )
