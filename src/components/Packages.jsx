@@ -6,9 +6,19 @@ function Packages() {
 
   useEffect(() => {
     const revealItems = sectionRef.current.querySelectorAll('.reveal-item')
+
+    // Immediately reveal items that are already in viewport to prevent disappearing on re-render
+    revealItems.forEach(item => {
+      const rect = item.getBoundingClientRect()
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0
+      if (isInViewport) {
+        item.classList.add('revealed')
+      }
+    })
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
           const container = entry.target.parentElement
           const siblings = Array.from(container.querySelectorAll('.reveal-item'))
           const itemIndex = siblings.indexOf(entry.target)
@@ -24,10 +34,14 @@ function Packages() {
       rootMargin: '0px 0px -50px 0px'
     })
 
-    revealItems.forEach(item => revealObserver.observe(item))
+    revealItems.forEach(item => {
+      if (!item.classList.contains('revealed')) {
+        revealObserver.observe(item)
+      }
+    })
 
     return () => revealObserver.disconnect()
-  }, [])
+  }, [selectedPackage])
 
   const handlePackageClick = (packageType) => {
     setSelectedPackage(packageType)
@@ -48,7 +62,7 @@ function Packages() {
           <p>Two packages designed for different stages. Both focused on execution and clarity.</p>
         </div>
         <div className="packages-grid">
-          <div 
+          <div
             className={`package-card featured reveal-item ${selectedPackage === 'creation' ? 'selected' : ''}`}
             onClick={() => handlePackageClick('creation')}
             onKeyDown={(e) => handleKeyDown(e, 'creation')}
@@ -74,7 +88,7 @@ function Packages() {
             </div>
             <a href="#contact" className="btn" style={{ width: '100%' }}>Book a Call</a>
           </div>
-          <div 
+          <div
             className={`package-card reveal-item ${selectedPackage === 'enhancement' ? 'selected' : ''}`}
             onClick={() => handlePackageClick('enhancement')}
             onKeyDown={(e) => handleKeyDown(e, 'enhancement')}
