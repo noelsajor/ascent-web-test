@@ -3,6 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquareLinkedin, faSpotify, faApple, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
+// ✅ Import local images so Vite/Vercel can bundle them correctly
+import ethanAvatar from '../assets/ethan.webp'
+import andreaSAvatar from '../assets/andrea_s.webp'
+import albertoAvatar from '../assets/alberto.webp'
+import joseAvatar from '../assets/jose.webp'
+import kimAvatar from '../assets/kim.webp'
+import lourdesAvatar from '../assets/lourdes.webp'
+import andreaMAvatar from '../assets/andrea_m.webp'
+
 function About() {
   const sectionRef = useRef(null)
 
@@ -31,59 +40,55 @@ function About() {
     return () => revealObserver.disconnect()
   }, [])
 
-  // ✅ Put avatar + LinkedIn URL here
-  // Avatar can be:
-  // 1) local file: "/images/team/jane.jpg" (if stored in /public/images/...)
-  // 2) imported asset: import jane from '../assets/jane.jpg' then avatar: jane
-  // 3) external URL: "https://..."
+  // ✅ Use imported avatars here (NOT "src/assets/...")
   const teamMembers = [
     {
       role: 'Founder & Managing Director',
       description: 'Strategic vision, client relationships, execution standards',
       name: 'Name Here',
-      avatar: 'src/assets/ethan.webp',
+      avatar: ethanAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     },
     {
       role: 'Project Manager',
       description: 'Project coordination, timelines, client communication',
       name: 'Name Here',
-      avatar: 'src/assets/andrea_s.webp',
+      avatar: andreaSAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     },
     {
       role: 'Creative Director',
       description: 'Brand strategy, visual identity, creative direction',
       name: 'Name Here',
-      avatar: 'src/assets/alberto.webp',
+      avatar: albertoAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     },
     {
       role: 'Developer (Shopify/Frontend)',
       description: 'Shopify builds, optimization, technical execution',
       name: 'Name Here',
-      avatar: 'src/assets/jose.webp',
+      avatar: joseAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     },
     {
       role: 'Social Media Manager',
       description: 'Content creation, daily posting, community engagement',
       name: 'Name Here',
-      avatar: 'src/assets/kim.webp',
+      avatar: kimAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     },
     {
       role: 'Search & GEO Specialist',
       description: 'SEO strategy, content discoverability, technical SEO',
       name: 'Name Here',
-      avatar: 'src/assets/lourdes.webp',
+      avatar: lourdesAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     },
     {
       role: 'Content Producer',
       description: 'shoots, edits, delivers short-form + long-form content',
       name: 'Name Here',
-      avatar: 'src/assets/andrea_m.webp',
+      avatar: andreaMAvatar,
       linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
     }
   ]
@@ -114,7 +119,6 @@ function About() {
         <div className="team-grid">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-member reveal-item">
-              {/* ✅ Avatar image */}
               <div className="team-avatar">
                 {member.avatar ? (
                   <img
@@ -132,7 +136,6 @@ function About() {
               <h3>{member.role}</h3>
               <p>{member.description}</p>
 
-              {/* ✅ Use per-member LinkedIn URL */}
               {member.linkedinUrl ? (
                 <a
                   href={member.linkedinUrl}
