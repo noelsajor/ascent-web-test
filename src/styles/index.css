@@ -55,6 +55,11 @@
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.7;
@@ -97,11 +102,17 @@ header.is-scrolled {
 }
 
 .logo {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 nav ul {
@@ -116,12 +127,36 @@ nav a {
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s;
+    font-weight: 500;
+    /* same for all */
+    line-height: 1;
+    /* consistent line box */
+    display: inline-flex;
+    /* avoids baseline weirdness */
+    align-items: center;
+    padding: 8px 0;
+    /* gives consistent vertical box */
 }
 
 nav a.active {
     color: var(--accent);
-    font-weight: bold;
+    font-weight: 500;
+    /* keep same */
+    position: relative;
 }
+
+nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.9;
+    border-radius: 999px;
+}
+
 
 nav a:hover {
     color: var(--text);
@@ -1368,6 +1403,15 @@ summary:focus-visible {
     justify-content: center;
     color: var(--muted);
     font-size: 0.875rem;
+    overflow: hidden;
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* keeps faces centered & uncropped */
+    display: block;
 }
 
 .team-member h3 {
@@ -1741,6 +1785,26 @@ footer {
     border-top: 1px solid var(--line);
 }
 
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: var(--spacing-16);
+    text-decoration: none;
+}
+
+.footer-logo-img {
+    display: block;
+    height: 40px;
+    /* adjust if needed */
+    width: auto;
+    opacity: 0.95;
+}
+
+.footer-logo:hover .footer-logo-img {
+    opacity: 1;
+}
+
+
 @media (min-width: 768px) {
     footer {
         padding: var(--spacing-64) 0 var(--spacing-24);
@@ -1808,11 +1872,45 @@ footer {
 }
 
 .footer-bottom {
-    border-top: 1px solid var(--line);
-    padding-top: var(--spacing-24);
-    text-align: center;
-    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+    align-items: center;
 }
+
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer-socials {
+    display: flex;
+    gap: var(--spacing-4);
+}
+
+.footer-socials a {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--muted);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.footer-socials svg {
+    width: 18px;
+    height: 18px;
+}
+
 
 /* Reveal Animation */
 .reveal-item {
@@ -1928,9 +2026,16 @@ ol {
     margin-top: var(--spacing-12);
 }
 
-li+li {
+
+/* Only apply vertical list rhythm inside content areas */
+.prose li+li,
+.privacy-content li+li,
+.about-content li+li,
+.product-block li+li,
+.package-detail li+li {
     margin-top: var(--spacing-8);
 }
+
 
 /* 3) Make sections feel intentional (less “stacked blocks”) */
 section {
@@ -1952,6 +2057,15 @@ section {
         padding: var(--spacing-120) 0;
     }
 }
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li+li {
+    margin-top: 0 !important;
+}
+
 
 /* 4) Increase spacing inside cards (elegance = breathing room) */
 .portfolio-content,
@@ -2048,4 +2162,20 @@ nav ul {
 
 .mobile-nav a {
     padding: var(--spacing-16) 0;
+}
+
+/* Offset anchor jumps to account for sticky header */
+:target {
+    scroll-margin-top: 192px;
+    /* adjust to your header height */
+}
+
+/* Or more explicit (recommended) */
+#home,
+#work,
+#packages,
+#product,
+#about,
+#contact {
+    scroll-margin-top: 96px;
 }
