@@ -31,13 +31,61 @@ function About() {
     return () => revealObserver.disconnect()
   }, [])
 
+  // ✅ Put avatar + LinkedIn URL here
+  // Avatar can be:
+  // 1) local file: "/images/team/jane.jpg" (if stored in /public/images/...)
+  // 2) imported asset: import jane from '../assets/jane.jpg' then avatar: jane
+  // 3) external URL: "https://..."
   const teamMembers = [
-    { role: 'Founder & Managing Director', description: 'Strategic vision, client relationships, execution standards' },
-    { role: 'Project Manager', description: 'Project coordination, timelines, client communication' },
-    { role: 'Creative Director', description: 'Brand strategy, visual identity, creative direction' },
-    { role: 'Developer (Shopify/Frontend)', description: 'Shopify builds, optimization, technical execution' },
-    { role: 'Social Media Manager', description: 'Content creation, daily posting, community engagement' },
-    { role: 'Search & GEO Specialist', description: 'SEO strategy, content discoverability, technical SEO' }
+    {
+      role: 'Founder & Managing Director',
+      description: 'Strategic vision, client relationships, execution standards',
+      name: 'Name Here',
+      avatar: 'src/assets/ethan.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    },
+    {
+      role: 'Project Manager',
+      description: 'Project coordination, timelines, client communication',
+      name: 'Name Here',
+      avatar: 'src/assets/andrea_s.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    },
+    {
+      role: 'Creative Director',
+      description: 'Brand strategy, visual identity, creative direction',
+      name: 'Name Here',
+      avatar: 'src/assets/alberto.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    },
+    {
+      role: 'Developer (Shopify/Frontend)',
+      description: 'Shopify builds, optimization, technical execution',
+      name: 'Name Here',
+      avatar: 'src/assets/jose.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    },
+    {
+      role: 'Social Media Manager',
+      description: 'Content creation, daily posting, community engagement',
+      name: 'Name Here',
+      avatar: 'src/assets/kim.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    },
+    {
+      role: 'Search & GEO Specialist',
+      description: 'SEO strategy, content discoverability, technical SEO',
+      name: 'Name Here',
+      avatar: 'src/assets/lourdes.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    },
+    {
+      role: 'Content Producer',
+      description: 'shoots, edits, delivers short-form + long-form content',
+      name: 'Name Here',
+      avatar: 'src/assets/andrea_m.webp',
+      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+    }
   ]
 
   return (
@@ -66,19 +114,37 @@ function About() {
         <div className="team-grid">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-member reveal-item">
-              <div className="team-avatar">Photo</div>
+              {/* ✅ Avatar image */}
+              <div className="team-avatar">
+                {member.avatar ? (
+                  <img
+                    src={member.avatar}
+                    alt={`${member.name || member.role} profile photo`}
+                    loading="lazy"
+                    width="120"
+                    height="120"
+                  />
+                ) : (
+                  'Photo'
+                )}
+              </div>
+
               <h3>{member.role}</h3>
               <p>{member.description}</p>
 
-              <a
-                href="#"
-                className="team-linkedin"
-                aria-label="LinkedIn profile"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon icon={faSquareLinkedin} />
-              </a>
+              {/* ✅ Use per-member LinkedIn URL */}
+              {member.linkedinUrl ? (
+                <a
+                  href={member.linkedinUrl}
+                  className="team-linkedin"
+                  aria-label={`${member.name || member.role} LinkedIn profile`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                >
+                  <FontAwesomeIcon icon={faSquareLinkedin} />
+                </a>
+              ) : null}
             </div>
           ))}
         </div>
