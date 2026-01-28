@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import logo from '../assets/ascent_logo.svg'
+
 
 function Header({ currentPage }) {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -66,7 +68,9 @@ function Header({ currentPage }) {
   return (
     <header className={isScrolled ? 'is-scrolled' : ''}>
       <div className="header-inner">
-        <a href="#home" className="logo">Ascent Mgnt</a>
+        <a href="#home" className="logo" aria-label="Ascent Mgnt">
+          <img src={logo} alt="Ascent Mgnt" className="logo-img" />
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
