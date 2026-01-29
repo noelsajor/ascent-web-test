@@ -29,6 +29,13 @@ function Portfolio() {
   }, [])
 
   const portfolioItems = [
+        {
+      id: 'sana-honey',
+      tags: ['Supplements', 'Health', 'Brand'],
+      title: 'SANA Honey',
+      description: 'Refreshed the e-commerce experience to highlight the unique honey-based form factor. Implemented a subscription-first approach and produced lifestyle content that positioned the brand as a daily wellness essential.',
+      url: 'https://www.sanahoney.com/'
+    },
     {
       id: 'nuud-pleasures',
       tags: ['Wellness', 'E-commerce', 'Brand'],
@@ -42,13 +49,6 @@ function Portfolio() {
       title: 'Strike',
       description: 'Launched the digital flagship for this premium legal THC brand. Focused on high-impact visual storytelling and a conversion-optimized user flow that educates customers on product quality and safety.',
       url: 'https://strikebrands.co/'
-    },
-    {
-      id: 'sana-honey',
-      tags: ['Supplements', 'Health', 'Brand'],
-      title: 'SANA Honey',
-      description: 'Refreshed the e-commerce experience to highlight the unique honey-based form factor. Implemented a subscription-first approach and produced lifestyle content that positioned the brand as a daily wellness essential.',
-      url: 'https://www.sanahoney.com/'
     }
   ]
 
