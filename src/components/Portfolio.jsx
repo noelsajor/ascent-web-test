@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 import sanaHoneyImg from '../assets/SANA_cover.webp'
-import nuudPleasuresImg from '../assets/nuud-pleasures.jpg' // add your actual filename
-import strikeImg from '../assets/strike.jpg'
+import nuudPleasuresImg from '../assets/NUUD_cover.webp' // add your actual filename
+import strikeImg from '../assets/STRIKE_cover.webp'
 
 
 function Portfolio() {
