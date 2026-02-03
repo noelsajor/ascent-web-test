@@ -35,6 +35,8 @@ function Portfolio() {
       title: 'SANA Honey',
       description: 'Refreshed the e-commerce experience to highlight the unique honey-based form factor. Implemented a subscription-first approach and produced lifestyle content that positioned the brand as a daily wellness essential.',
       url: 'https://www.sanahoney.com/'
+      image: 'src/assets/SANA_cover.webp', // Add your image path
+      imageAlt: 'SANA Honey brand and e-commerce showcase'
     },
     {
       id: 'nuud-pleasures',
@@ -42,6 +44,8 @@ function Portfolio() {
       title: 'NUUD Pleasures',
       description: 'End-to-end brand architecture and Shopify build. We developed a compliance-friendly content strategy that navigates sensitive ad policies while building community through education on intimacy and adaptogens.',
       url: 'https://nuudpleasures.com/'
+      image: 'src/assets/NUUD_cover.webp',
+      imageAlt: 'NUUD Pleasures brand identity and website'
     },
     {
       id: 'strike',
@@ -49,6 +53,8 @@ function Portfolio() {
       title: 'Strike',
       description: 'Launched the digital flagship for this premium legal THC brand. Focused on high-impact visual storytelling and a conversion-optimized user flow that educates customers on product quality and safety.',
       url: 'https://strikebrands.co/'
+      image: 'src/assets/STRIKE_cover.webp',
+      imageAlt: 'Strike legal THC brand website'
     }
   ]
 
@@ -62,7 +68,13 @@ function Portfolio() {
         <div className="portfolio-grid">
           {portfolioItems.map(item => (
             <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="portfolio-item reveal-item">
-              <div className="portfolio-image">Image Preview</div>
+              <div className="portfolio-image">
+                <img 
+                  src={item.image} 
+                  alt={item.imageAlt}
+                  loading="lazy"
+                />
+              </div>
               <div className="portfolio-content">
                 <div className="portfolio-tags">
                   {item.tags.map(tag => (
