@@ -35,7 +35,7 @@ function Portfolio() {
       title: 'SANA Honey',
       description: 'Refreshed the e-commerce experience to highlight the unique honey-based form factor. Implemented a subscription-first approach and produced lifestyle content that positioned the brand as a daily wellness essential.',
       url: 'https://www.sanahoney.com/'
-      image: 'src/assets/SANA_cover.webp', // Add your image path
+      image: 'https://github.com/noelsajor/ascent-web-test/blob/4db98e93549499b65b8883c3724957cdd4012da7/src/assets/STRIKE_cover.webp',
       imageAlt: 'SANA Honey brand and e-commerce showcase'
     },
     {
@@ -44,7 +44,7 @@ function Portfolio() {
       title: 'NUUD Pleasures',
       description: 'End-to-end brand architecture and Shopify build. We developed a compliance-friendly content strategy that navigates sensitive ad policies while building community through education on intimacy and adaptogens.',
       url: 'https://nuudpleasures.com/'
-      image: 'src/assets/NUUD_cover.webp',
+      image: 'https://github.com/noelsajor/ascent-web-test/blob/4db98e93549499b65b8883c3724957cdd4012da7/src/assets/STRIKE_cover.webp',
       imageAlt: 'NUUD Pleasures brand identity and website'
     },
     {
@@ -53,7 +53,7 @@ function Portfolio() {
       title: 'Strike',
       description: 'Launched the digital flagship for this premium legal THC brand. Focused on high-impact visual storytelling and a conversion-optimized user flow that educates customers on product quality and safety.',
       url: 'https://strikebrands.co/'
-      image: 'src/assets/STRIKE_cover.webp',
+      image: 'https://github.com/noelsajor/ascent-web-test/blob/4db98e93549499b65b8883c3724957cdd4012da7/src/assets/STRIKE_cover.webp',
       imageAlt: 'Strike legal THC brand website'
     }
   ]
