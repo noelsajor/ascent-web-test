@@ -34,7 +34,7 @@ function Babysitter() {
         <div className="babysitter-content reveal-item">
           <h2>You don't need 5 freelancers. You need one team that executes.</h2>
           <p className="babysitter-subtitle">
-            We're babysitters for small businesses. You hire us so you don't have to think about brand, content, posting, site builds, or creative strategy. We handle it.
+            You hire us so you don’t have to think about brand, content, posting, site builds, or creative strategy. We handle it end-to-end.
           </p>
         </div>
 
