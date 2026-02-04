@@ -666,18 +666,28 @@ h1 {
     outline-offset: 2px;
 }
 
-.portfolio-image {
-    width: 100%;
-    height: 360px;
-    background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-1) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 0.875rem;
-    border-bottom: 1px solid var(--line);
-    flex-shrink: 0;
+.portfolio-image{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  overflow: hidden;
 }
+
+.portfolio-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* use contain if you want no cropping */
+  object-position: center;
+  display: block;
+}
+
 
 .portfolio-item::before {
     content: '';
