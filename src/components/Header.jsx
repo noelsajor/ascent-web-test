@@ -68,20 +68,20 @@ function Header({ currentPage }) {
   return (
     <header className={isScrolled ? 'is-scrolled' : ''}>
       <div className="header-inner">
-        <a href="#home" className="logo" aria-label="Ascent Mgnt">
+        <a href="/" className="logo" aria-label="Ascent Mgnt">
           <img src={logo} alt="Ascent Mgnt" className="logo-img" />
         </a>
 
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
           <ul>
-            <li><a href="#home" className={isActive('home')}>Home</a></li>
-            <li><a href="#work" className={isActive('work')}>Work</a></li>
-            <li><a href="#packages" className={isActive('packages')}>Packages</a></li>
-            <li><a href="#product" className={isActive('product')}>Product</a></li>
-            <li><a href="#about" className={isActive('about')}>About</a></li>
-            <li><a href="#contact" className={isActive('contact')}>Contact</a></li>
-            <li><a href="#contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
+            <li><a href="/" className={isActive('home')}>Home</a></li>
+            <li><a href="/work" className={isActive('work')}>Work</a></li>
+            <li><a href="/packages" className={isActive('packages')}>Packages</a></li>
+            <li><a href="/product" className={isActive('product')}>Product</a></li>
+            <li><a href="/about" className={isActive('about')}>About</a></li>
+            <li><a href="/contact" className={isActive('contact')}>Contact</a></li>
+            <li><a href="/contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
           </ul>
         </nav>
 
@@ -104,13 +104,13 @@ function Header({ currentPage }) {
           <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
             <nav className="mobile-nav">
               <ul>
-                <li><a href="#home" className={isActive('home')} onClick={handleNavClick}>Home</a></li>
-                <li><a href="#work" className={isActive('work')} onClick={handleNavClick}>Work</a></li>
-                <li><a href="#packages" className={isActive('packages')} onClick={handleNavClick}>Packages</a></li>
-                <li><a href="#product" className={isActive('product')} onClick={handleNavClick}>Product</a></li>
-                <li><a href="#about" className={isActive('about')} onClick={handleNavClick}>About</a></li>
-                <li><a href="#contact" className={isActive('contact')} onClick={handleNavClick}>Contact</a></li>
-                <li><a href="#contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
+                <li><a href="/" className={isActive('home')} onClick={handleNavClick}>Home</a></li>
+                <li><a href="/work" className={isActive('work')} onClick={handleNavClick}>Work</a></li>
+                <li><a href="/packages" className={isActive('packages')} onClick={handleNavClick}>Packages</a></li>
+                <li><a href="/product" className={isActive('product')} onClick={handleNavClick}>Product</a></li>
+                <li><a href="/about" className={isActive('about')} onClick={handleNavClick}>About</a></li>
+                <li><a href="/contact" className={isActive('contact')} onClick={handleNavClick}>Contact</a></li>
+                <li><a href="/contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
               </ul>
             </nav>
           </div>
