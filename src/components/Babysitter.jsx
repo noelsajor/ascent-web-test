@@ -32,7 +32,7 @@ function Babysitter() {
     <section className="babysitter" ref={sectionRef}>
       <div className="container">
         <div className="babysitter-content reveal-item">
-          <h2>You don't need 5 freelancers. You need one team that executes.</h2>
+          <h2>You don't need 50 freelancers. You need one team that executes.</h2>
           <p className="babysitter-subtitle">
             We handle it end-to-end. You hire us so you don’t have to think about brand, content, posting, site builds, or creative strategy.
           </p>
