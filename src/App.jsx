@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Portfolio from './components/Portfolio'
@@ -10,51 +11,41 @@ import Testimonials from './components/Testimonials'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/FinalCTA'
 import Product from './components/Product'
-import PackagesDetail from './components/PackagesDetail'
 import About from './components/About'
 import Contact from './components/Contact'
 import Privacy from './components/Privacy'
 import Footer from './components/Footer'
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home')
-
-  useEffect(() => {
-    // Handle hash-based navigation
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1) || 'home'
-      setCurrentPage(hash)
-      window.scrollTo(0, 0)
-    }
-
-    handleHashChange()
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
-
+function Home() {
   return (
     <>
-      <Header currentPage={currentPage} />
+      <Hero />
+      <Portfolio />
+      <Babysitter />
+      <Packages />
+      <TikTok />
+      <HowItWorks />
+      <Testimonials />
+      <FAQ />
+      <FinalCTA />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Header />
       <main id="main">
-        {currentPage === 'home' && (
-          <>
-            <Hero />
-            <Portfolio />
-            <Babysitter />
-            <Packages />
-            <TikTok />
-            <HowItWorks />
-            <Testimonials />
-            <FAQ />
-            <FinalCTA />
-          </>
-        )}
-        {currentPage === 'work' && <Portfolio />}
-        {currentPage === 'packages' && <Packages />}
-        {currentPage === 'product' && <Product />}
-        {currentPage === 'about' && <About />}
-        {currentPage === 'contact' && <Contact />}
-        {currentPage === 'privacy' && <Privacy />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Portfolio />} />
+          <Route path="/packages" element={<Packages />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+        </Routes>
       </main>
       <Footer />
     </>
