@@ -1,39 +1,41 @@
 import { useEffect, useState } from 'react'
 import logo from '../assets/ascent_logo.svg'
 
-
-function Header({ currentPage }) {
+function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activePage, setActivePage] = useState('home')
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.pageYOffset >= 12)
-    }
-
+    const handleScroll = () => setIsScrolled(window.pageYOffset >= 12)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // ✅ Sync active link with the current URL path
+  useEffect(() => {
+    const syncActive = () => {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '') // trim slashes
+      setActivePage(path === '' ? 'home' : path)
+    }
+
+    syncActive()
+    window.addEventListener('popstate', syncActive) // back/forward
+    return () => window.removeEventListener('popstate', syncActive)
   }, [])
 
   // Handle ESC key to close mobile menu
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false)
-      }
+      if (e.key === 'Escape' && isMobileMenuOpen) setIsMobileMenuOpen(false)
     }
-
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isMobileMenuOpen])
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
@@ -49,38 +51,33 @@ function Header({ currentPage }) {
     }
   }
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+  const toggleMobileMenu = () => setIsMobileMenuOpen((v) => !v)
+  const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
-
-  const handleNavClick = (e) => {
+  // ✅ Update active state immediately on click (so it highlights right away)
+  const handleNavClick = (page) => () => {
+    setActivePage(page)
     closeMobileMenu()
   }
 
-  const isActive = (page) => {
-    return currentPage === page ? 'active' : ''
-  }
+  const isActive = (page) => (activePage === page ? 'active' : '')
 
   return (
     <header className={isScrolled ? 'is-scrolled' : ''}>
       <div className="header-inner">
-        <a href="/" className="logo" aria-label="Ascent Mgnt">
+        <a href="/" className="logo" aria-label="Ascent Mgnt" onClick={handleNavClick('home')}>
           <img src={logo} alt="Ascent Mgnt" className="logo-img" />
         </a>
 
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
           <ul>
-            <li><a href="/" className={isActive('home')}>Home</a></li>
-            <li><a href="/work" className={isActive('work')}>Work</a></li>
-            <li><a href="/packages" className={isActive('packages')}>Packages</a></li>
-            <li><a href="/product" className={isActive('product')}>Product</a></li>
-            <li><a href="/about" className={isActive('about')}>About</a></li>
-            <li><a href="/contact" className={isActive('contact')}>Contact</a></li>
+            <li><a href="/" className={isActive('home')} onClick={handleNavClick('home')}>Home</a></li>
+            <li><a href="/work" className={isActive('work')} onClick={handleNavClick('work')}>Work</a></li>
+            <li><a href="/packages" className={isActive('packages')} onClick={handleNavClick('packages')}>Packages</a></li>
+            <li><a href="/product" className={isActive('product')} onClick={handleNavClick('product')}>Product</a></li>
+            <li><a href="/about" className={isActive('about')} onClick={handleNavClick('about')}>About</a></li>
+            <li><a href="/contact" className={isActive('contact')} onClick={handleNavClick('contact')}>Contact</a></li>
             <li><a href="/contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
           </ul>
         </nav>
@@ -104,12 +101,12 @@ function Header({ currentPage }) {
           <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
             <nav className="mobile-nav">
               <ul>
-                <li><a href="/" className={isActive('home')} onClick={handleNavClick}>Home</a></li>
-                <li><a href="/work" className={isActive('work')} onClick={handleNavClick}>Work</a></li>
-                <li><a href="/packages" className={isActive('packages')} onClick={handleNavClick}>Packages</a></li>
-                <li><a href="/product" className={isActive('product')} onClick={handleNavClick}>Product</a></li>
-                <li><a href="/about" className={isActive('about')} onClick={handleNavClick}>About</a></li>
-                <li><a href="/contact" className={isActive('contact')} onClick={handleNavClick}>Contact</a></li>
+                <li><a href="/" className={isActive('home')} onClick={handleNavClick('home')}>Home</a></li>
+                <li><a href="/work" className={isActive('work')} onClick={handleNavClick('work')}>Work</a></li>
+                <li><a href="/packages" className={isActive('packages')} onClick={handleNavClick('packages')}>Packages</a></li>
+                <li><a href="/product" className={isActive('product')} onClick={handleNavClick('product')}>Product</a></li>
+                <li><a href="/about" className={isActive('about')} onClick={handleNavClick('about')}>About</a></li>
+                <li><a href="/contact" className={isActive('contact')} onClick={handleNavClick('contact')}>Contact</a></li>
                 <li><a href="/contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
               </ul>
             </nav>
