@@ -45,51 +45,51 @@ function About() {
     {
       role: 'Founder & Managing Director',
       description: 'Strategic vision, client relationships, execution standards',
-      name: 'Name Here',
+      name: 'Ethan Barak',
       avatar: ethanAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/ethan-barak-40305aa1/'
     },
     {
       role: 'Project Manager',
       description: 'Project coordination, timelines, client communication',
-      name: 'Name Here',
+      name: 'Andrea Del Sol',
       avatar: andreaSAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/andreadelsol/'
     },
     {
       role: 'Creative Director',
       description: 'Brand strategy, visual identity, creative direction',
-      name: 'Name Here',
+      name: 'Alberto Olivero',
       avatar: albertoAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/ajolivero/'
     },
     {
       role: 'Developer (Shopify/Frontend)',
       description: 'Shopify builds, optimization, technical execution',
-      name: 'Name Here',
+      name: 'Jose Leon',
       avatar: joseAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/noelsajor/'
     },
     {
       role: 'Social Media Manager',
       description: 'Content creation, daily posting, community engagement',
-      name: 'Name Here',
+      name: 'Kimberly Salamanca',
       avatar: kimAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/kimberly-salamanca-gonzalez-560708a7/?locale=en_US'
     },
     {
       role: 'Search & GEO Specialist',
       description: 'SEO strategy, content discoverability, technical SEO',
-      name: 'Name Here',
+      name: 'Lourdes Uzcategui',
       avatar: lourdesAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/lourdes-m-uzc%C3%A1tegui-brice%C3%B1o/'
     },
     {
       role: 'Content Producer',
       description: 'shoots, edits, delivers short-form + long-form content',
-      name: 'Name Here',
+      name: 'Andrea Mikaty',
       avatar: andreaMAvatar,
-      linkedinUrl: 'https://www.linkedin.com/in/your-profile/'
+      linkedinUrl: 'https://www.linkedin.com/in/andrea-mikaty-142654306/'
     }
   ]
 
@@ -133,8 +133,8 @@ function About() {
                 )}
               </div>
 
-              <h3>{member.role}</h3>
-              <p>{member.description}</p>
+              <h3>{member.name}</h3>
+              <p>{member.role}</p>
 
               {member.linkedinUrl ? (
                 <a

@@ -1,4 +1,79 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useId } from 'react'
+
+function PackageIncludes({ items, defaultVisibleMobile = 4 }) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const contentId = useId()
+  const listRef = useRef(null)
+
+  const visible = items.slice(0, defaultVisibleMobile)
+  const hidden = items.slice(defaultVisibleMobile)
+  const total = items.length
+  const hiddenCount = hidden.length
+
+  const toggle = (e) => {
+    // Prevent triggering the parent package-card onClick
+    e.preventDefault()
+    e.stopPropagation()
+    setIsExpanded((v) => !v)
+  }
+
+  // Collapse if the package changes (new items list)
+  useEffect(() => {
+    setIsExpanded(false)
+  }, [total])
+
+  return (
+    <div className="package-includes-wrap">
+      {/* Desktop: show full list */}
+      <ul className="package-includes package-includes--desktop">
+        {items.map((item, idx) => (
+          <li key={idx}>{item}</li>
+        ))}
+      </ul>
+
+      {/* Mobile: show first N + expand */}
+      <div className="package-includes--mobile">
+        <ul className="package-includes">
+          {visible.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+
+        {hiddenCount > 0 && (
+          <>
+            <div
+              id={contentId}
+              className={`package-includes-collapsible ${isExpanded ? 'is-expanded' : ''}`}
+              style={{
+                '--target-height':
+                  isExpanded && listRef.current ? `${listRef.current.scrollHeight}px` : '0px'
+              }}
+            >
+              <ul className="package-includes" ref={listRef}>
+                {hidden.map((item, idx) => (
+                  <li key={`${defaultVisibleMobile + idx}`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <button
+              type="button"
+              className="package-includes-toggle"
+              onClick={toggle}
+              aria-expanded={isExpanded}
+              aria-controls={contentId}
+            >
+              {isExpanded ? 'Show less' : `Show all included (${total})`}
+              <span className="package-includes-chevron" aria-hidden="true">
+                ▾
+              </span>
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
 
 function Packages() {
   const [selectedPackage, setSelectedPackage] = useState('creation')
@@ -54,6 +129,27 @@ function Packages() {
     }
   }
 
+  const creationItems = [
+    'Brand foundation and strategy',
+    'Visual identity and packaging design',
+    'Shopify site design and build',
+    'Content strategy and templates',
+    'Social media setup and execution',
+    'TikTok Shop and live shopping setup',
+    'Ongoing content creation and posting',
+    'Creative direction and optimization'
+  ]
+
+  const enhancementItems = [
+    'Visual and content audit',
+    'Strategic refinement and positioning',
+    'Content upgrade and systems',
+    'Social media management and posting',
+    'Shopify optimization (if applicable)',
+    'Creative execution and asset creation',
+    'Ongoing management and optimization'
+  ]
+
   return (
     <section className="packages-section" id="packages" ref={sectionRef}>
       <div className="container">
@@ -61,6 +157,7 @@ function Packages() {
           <h2>Choose Your Package</h2>
           <p>Two packages designed for different stages. Both focused on execution and clarity.</p>
         </div>
+
         <div className="packages-grid">
           <div
             className={`package-card featured reveal-item ${selectedPackage === 'creation' ? 'selected' : ''}`}
@@ -73,21 +170,16 @@ function Packages() {
             <h3>Creation Package</h3>
             <p className="package-subtitle">Build your brand from zero or rebuild it right</p>
             <p className="package-for">For: New brands or complete rebuilds</p>
-            <ul className="package-includes">
-              <li>Brand foundation and strategy</li>
-              <li>Visual identity and packaging design</li>
-              <li>Shopify site design and build</li>
-              <li>Content strategy and templates</li>
-              <li>Social media setup and execution</li>
-              <li>TikTok Shop and live shopping setup</li>
-              <li>Ongoing content creation and posting</li>
-              <li>Creative direction and optimization</li>
-            </ul>
+
+            <PackageIncludes items={creationItems} defaultVisibleMobile={4} />
+
             <div className="package-outcome">
-              <strong>Outcome:</strong> A complete brand system that looks premium, consistent content across platforms, and commerce infrastructure ready to sell.
+              <strong>Outcome:</strong> A complete brand system that looks premium, consistent content across platforms,
+              and commerce infrastructure ready to sell.
             </div>
             <a href="#contact" className="btn" style={{ width: '100%' }}>Book a Call</a>
           </div>
+
           <div
             className={`package-card reveal-item ${selectedPackage === 'enhancement' ? 'selected' : ''}`}
             onClick={() => handlePackageClick('enhancement')}
@@ -99,17 +191,12 @@ function Packages() {
             <h3>Enhancement Package</h3>
             <p className="package-subtitle">Elevate an existing brand with execution and optimization</p>
             <p className="package-for">For: Existing brands needing elevation</p>
-            <ul className="package-includes">
-              <li>Visual and content audit</li>
-              <li>Strategic refinement and positioning</li>
-              <li>Content upgrade and systems</li>
-              <li>Social media management and posting</li>
-              <li>Shopify optimization (if applicable)</li>
-              <li>Creative execution and asset creation</li>
-              <li>Ongoing management and optimization</li>
-            </ul>
+
+            <PackageIncludes items={enhancementItems} defaultVisibleMobile={4} />
+
             <div className="package-outcome">
-              <strong>Outcome:</strong> Your brand looks more premium, content is consistent, and you stop worrying about execution. Clarity and momentum.
+              <strong>Outcome:</strong> Your brand looks more premium, content is consistent, and you stop worrying about
+              execution. Clarity and momentum.
             </div>
             <a href="#contact" className="btn" style={{ width: '100%' }}>Book a Call</a>
           </div>

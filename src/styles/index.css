@@ -11,7 +11,8 @@
     --surface-2: #1E2229;
     --text: #F2F2F2;
     --muted: rgba(242, 242, 242, 0.72);
-    --line: rgba(255, 255, 255, 0.08);
+    --line: rgba(255, 255, 255, 0.06);
+    /* calmer than 0.08 */
     --accent: #E9D090;
     --accent-2: #F3E1B5;
     --max-width: 1200px;
@@ -59,10 +60,10 @@ html {
     scroll-behavior: smooth;
 }
 
-
 body {
     font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.7;
+    line-height: 1.75;
+    /* premium rhythm */
     color: var(--text);
     background: var(--bg-0);
     font-size: 17px;
@@ -118,7 +119,8 @@ header.is-scrolled {
 nav ul {
     list-style: none;
     display: flex;
-    gap: var(--spacing-32);
+    gap: var(--spacing-24);
+    /* was 32 */
     align-items: center;
 }
 
@@ -128,20 +130,15 @@ nav a {
     font-size: 0.95rem;
     transition: color 0.2s;
     font-weight: 500;
-    /* same for all */
     line-height: 1;
-    /* consistent line box */
     display: inline-flex;
-    /* avoids baseline weirdness */
     align-items: center;
     padding: 8px 0;
-    /* gives consistent vertical box */
 }
 
 nav a.active {
     color: var(--accent);
     font-weight: 500;
-    /* keep same */
     position: relative;
 }
 
@@ -156,7 +153,6 @@ nav a.active::after {
     opacity: 0.9;
     border-radius: 999px;
 }
-
 
 nav a:hover {
     color: var(--text);
@@ -296,7 +292,8 @@ nav a:focus-visible {
     -webkit-backdrop-filter: blur(20px);
     border-left: 1px solid var(--line);
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
-    padding: var(--spacing-48) var(--spacing-16);
+    padding: var(--spacing-40) var(--spacing-16);
+    /* refined */
     animation: slideIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     overflow-y: auto;
 }
@@ -429,8 +426,10 @@ nav a:focus-visible {
     }
 }
 
+/* Global sections */
 section {
-    padding: var(--spacing-56) 0;
+    padding: var(--spacing-64) 0;
+    /* was 56 */
     position: relative;
 }
 
@@ -440,9 +439,24 @@ section {
     }
 }
 
+/* Offset anchor jumps to account for sticky header */
+:target {
+    scroll-margin-top: 192px;
+}
+
+#home,
+#work,
+#packages,
+#product,
+#about,
+#contact {
+    scroll-margin-top: 96px;
+}
+
 /* Hero */
 .hero {
-    padding: var(--spacing-64) 0;
+    padding: var(--spacing-80) 0;
+    /* was 64 */
     position: relative;
     overflow: hidden;
 }
@@ -469,14 +483,14 @@ section {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 68ch;
     margin: 0 auto;
     text-align: center;
 }
 
 .hero-badge {
     display: inline-flex;
-    margin-bottom: var(--spacing-24);
+    margin-bottom: var(--spacing-32);
     animation: fadeInUp 0.6s ease-out;
 }
 
@@ -520,7 +534,7 @@ h1 {
 .hero-subtitle {
     font-size: 1.375rem;
     color: var(--muted);
-    margin-bottom: var(--spacing-32);
+    margin-bottom: var(--spacing-40);
     line-height: 1.6;
     max-width: 640px;
     margin-left: auto;
@@ -666,28 +680,27 @@ h1 {
     outline-offset: 2px;
 }
 
-.portfolio-image{
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-1) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.875rem;
-  border-bottom: 1px solid var(--line);
-  flex-shrink: 0;
-  overflow: hidden;
+.portfolio-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.875rem;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+    overflow: hidden;
 }
 
-.portfolio-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;      /* use contain if you want no cropping */
-  object-position: center;
-  display: block;
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
-
 
 .portfolio-item::before {
     content: '';
@@ -716,16 +729,17 @@ h1 {
 .portfolio-content {
     position: relative;
     z-index: 1;
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
+    /* premium padding */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     flex: 1;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .portfolio-content {
-        padding: var(--spacing-32);
+        padding: var(--spacing-24);
     }
 }
 
@@ -804,7 +818,7 @@ h1 {
 }
 
 .babysitter-content {
-    max-width: 900px;
+    max-width: 68ch;
     margin: 0 auto;
     text-align: center;
 }
@@ -846,13 +860,14 @@ h1 {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
+    /* premium padding */
     text-align: left;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .takeaway-card {
-        padding: var(--spacing-32);
+        padding: var(--spacing-24);
     }
 }
 
@@ -915,14 +930,42 @@ h1 {
 
 @media (max-width: 480px) {
     .package-card {
-        padding: var(--spacing-48) var(--spacing-32);
+        padding: var(--spacing-32) var(--spacing-24);
         align-items: center;
+        gap: 0;
     }
 
-    .package-includes li {
-        padding: 0;
+    @media (max-width: 480px) {
+        .packages-section .package-card h3 {
+            margin-bottom: 0;
+            font-size: 1.5rem;
+        }
 
+        .packages-section .package-subtitle {
+            margin-bottom: 0;
+        }
+
+        .packages-section .package-for {
+            margin-bottom: 0;
+        }
+
+        .packages-section .package-includes {
+            margin-bottom: 0;
+        }
+
+        .packages-section .package-includes li {
+            padding-bottom: 0;
+        }
+
+        .packages-section .package-includes-toggle {
+            margin: var(--spacing-8) 0;
+        }
+
+        .packages-section .package-outcome {
+            margin-bottom: var(--spacing-16);
+        }
     }
+
 }
 
 .package-card.featured::before {
@@ -981,6 +1024,8 @@ h1 {
     list-style: none;
     margin-bottom: var(--spacing-32);
     flex-grow: 1;
+    padding-left: 0;
+    /* important because you set ul global padding later */
 }
 
 .package-includes li {
@@ -1014,6 +1059,92 @@ h1 {
     font-weight: 600;
 }
 
+/* ✅ Inline Expand “Show more” for package-includes */
+.package-includes-wrap {
+    margin-top: 0.75rem;
+}
+
+.package-includes--desktop {
+    display: block;
+}
+
+.package-includes--mobile {
+    display: none;
+}
+
+.package-includes-collapsible {
+    overflow: hidden;
+    max-height: 0px;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition:
+        max-height 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 220ms ease,
+        transform 220ms ease;
+}
+
+.package-includes-collapsible.is-expanded {
+    max-height: var(--target-height);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.package-includes-toggle {
+    margin-top: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.package-includes-toggle:hover {
+    border-color: var(--accent);
+    background: rgba(233, 208, 144, 0.06);
+    transform: translateY(-1px);
+}
+
+.package-includes-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.package-includes-chevron {
+    display: inline-block;
+    transition: transform 220ms ease;
+}
+
+.package-includes-toggle[aria-expanded="true"] .package-includes-chevron {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+    .package-includes--desktop {
+        display: none;
+    }
+
+    .package-includes--mobile {
+        display: block;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .package-includes-collapsible,
+    .package-includes-toggle,
+    .package-includes-chevron {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
 /* TikTok Differentiator */
 .tiktok-section {
     background: var(--surface);
@@ -1029,7 +1160,7 @@ h1 {
 }
 
 .tiktok-content {
-    max-width: 800px;
+    max-width: 68ch;
     margin: 0 auto;
     text-align: center;
 }
@@ -1065,12 +1196,12 @@ h1 {
     background: var(--bg-1);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .tiktok-feature {
-        padding: var(--spacing-32);
+        padding: var(--spacing-24);
     }
 }
 
@@ -1144,6 +1275,110 @@ h1 {
     line-height: 1.6;
 }
 
+/* =========================
+   TikTok: Featured + 2 videos
+   Scoped to .tiktok-section
+========================= */
+
+.tiktok-section .tiktok-links {
+    margin-top: var(--spacing-24);
+    display: flex;
+    gap: var(--spacing-12);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tiktok-section .tiktok-media {
+    margin-top: var(--spacing-48);
+}
+
+.tiktok-section .tiktok-media-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: var(--spacing-24);
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.tiktok-section .video-stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--spacing-24);
+}
+
+.tiktok-section .video-card {
+    background: linear-gradient(135deg, var(--bg-1) 0%, rgba(18, 20, 23, 0.65) 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.tiktok-section .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-1) 100%);
+}
+
+.tiktok-section .video-card--featured .video-frame {
+    aspect-ratio: 16 / 9;
+}
+
+.tiktok-section .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.tiktok-section .video-meta {
+    padding: var(--spacing-16) var(--spacing-16);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-12);
+}
+
+.tiktok-section .video-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.tiktok-section .video-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.tiktok-section .video-link:hover {
+    color: var(--accent-2);
+}
+
+.tiktok-section .video-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 900px) {
+    .tiktok-section .tiktok-media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tiktok-section .video-stack {
+        grid-template-rows: auto;
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
 /* Testimonials */
 .testimonials {
     background: var(--bg-1);
@@ -1159,14 +1394,14 @@ h1 {
 
 .testimonial-card {
     background: var(--surface);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
     border-radius: var(--radius-md);
     border: 1px solid var(--line);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .testimonial-card {
-        padding: var(--spacing-32);
+        padding: var(--spacing-24);
     }
 }
 
@@ -1199,12 +1434,19 @@ details {
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     margin-bottom: var(--spacing-16);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
     transition: border-color 0.3s;
 }
 
+@media (max-width: 768px) {
+    details {
+        padding: var(--spacing-24);
+    }
+}
+
+/* Remove hover border noise */
 details:hover {
-    border-color: var(--accent);
+    border-color: var(--line);
 }
 
 details[open] {
@@ -1264,7 +1506,7 @@ summary:focus-visible {
 }
 
 .form-wrapper {
-    max-width: 600px;
+    max-width: 68ch;
     margin: 0 auto;
 }
 
@@ -1272,12 +1514,18 @@ summary:focus-visible {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
 }
 
 @media (min-width: 768px) {
     .contact-form {
         padding: var(--spacing-48);
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        padding: var(--spacing-24);
     }
 }
 
@@ -1350,7 +1598,7 @@ summary:focus-visible {
 }
 
 .about-content {
-    max-width: 800px;
+    max-width: 68ch;
     margin: 0 auto var(--spacing-48);
 }
 
@@ -1391,13 +1639,13 @@ summary:focus-visible {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
     text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .team-member {
-        padding: var(--spacing-32);
+        padding: var(--spacing-24);
     }
 }
 
@@ -1420,7 +1668,6 @@ summary:focus-visible {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* keeps faces centered & uncropped */
     display: block;
 }
 
@@ -1451,7 +1698,6 @@ summary:focus-visible {
 }
 
 .team-linkedin:hover {
-
     color: var(--accent);
     transform: translateY(-2px);
 }
@@ -1511,7 +1757,6 @@ summary:focus-visible {
     height: 24px;
 }
 
-
 /* Privacy Page */
 .privacy-section {
     padding: var(--spacing-56) 0;
@@ -1524,7 +1769,7 @@ summary:focus-visible {
 }
 
 .privacy-content {
-    max-width: 800px;
+    max-width: 68ch;
     margin: 0 auto;
 }
 
@@ -1557,7 +1802,7 @@ summary:focus-visible {
 }
 
 .product-hero {
-    max-width: 900px;
+    max-width: 68ch;
     margin: 0 auto var(--spacing-48);
     text-align: center;
 }
@@ -1597,12 +1842,18 @@ summary:focus-visible {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
 }
 
 @media (min-width: 768px) {
     .product-block {
         padding: var(--spacing-48);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-block {
+        padding: var(--spacing-24);
     }
 }
 
@@ -1680,18 +1931,24 @@ summary:focus-visible {
 }
 
 .package-detail {
-    max-width: 900px;
+    max-width: 68ch;
     margin: 0 auto var(--spacing-48);
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-24);
+    padding: var(--spacing-32);
 }
 
 @media (min-width: 768px) {
     .package-detail {
         padding: var(--spacing-48);
         margin-bottom: var(--spacing-64);
+    }
+}
+
+@media (max-width: 768px) {
+    .package-detail {
+        padding: var(--spacing-24);
     }
 }
 
@@ -1805,7 +2062,6 @@ footer {
 .footer-logo-img {
     display: block;
     height: 40px;
-    /* adjust if needed */
     width: auto;
     opacity: 0.95;
 }
@@ -1813,7 +2069,6 @@ footer {
 .footer-logo:hover .footer-logo-img {
     opacity: 1;
 }
-
 
 @media (min-width: 768px) {
     footer {
@@ -1921,7 +2176,6 @@ footer {
     height: 18px;
 }
 
-
 /* Reveal Animation */
 .reveal-item {
     opacity: 0;
@@ -1938,6 +2192,40 @@ footer {
     filter: blur(0);
 }
 
+/* Typography rhythm helpers */
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+    margin: 0;
+}
+
+p+p {
+    margin-top: var(--spacing-16);
+}
+
+/* IMPORTANT: keep UL padding for prose only, not UI lists */
+ul,
+ol {
+    padding-left: var(--spacing-24);
+    margin-top: var(--spacing-12);
+}
+
+/* Undo for nav lists + UI lists */
+nav ul,
+.mobile-nav ul,
+.footer-nav ul,
+.proof-points,
+.portfolio-tags,
+.package-includes,
+.product-block ul,
+.package-detail ul {
+    padding-left: 0;
+    margin-top: 0;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
 
@@ -1945,7 +2233,8 @@ footer {
     .packages-grid,
     .product-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-24);
+        gap: var(--spacing-32);
+        /* was 24 */
     }
 
     .takeaway-grid,
@@ -1979,213 +2268,4 @@ footer {
         width: 100%;
         text-align: center;
     }
-}
-
-/* ==============================
-   PREMIUM RHYTHM + DE-CLUTTER
-   Paste at END of CSS
-============================== */
-
-/* 1) Calm the overall density on mobile */
-body {
-    line-height: 1.75;
-}
-
-/* Better reading width — huge impact on “elegance” */
-.hero-content,
-.babysitter-content,
-.tiktok-content,
-.privacy-content,
-.about-content,
-.form-wrapper,
-.product-hero,
-.package-detail {
-    max-width: 68ch;
-    /* instead of wide blocks */
-}
-
-/* 2) Bring back typography rhythm (since you zeroed margins) */
-h1,
-h2,
-h3,
-p,
-ul,
-ol {
-    margin: 0;
-}
-
-h1 {
-    margin-bottom: var(--spacing-24);
-}
-
-h2 {
-    margin-bottom: var(--spacing-16);
-}
-
-h3 {
-    margin-bottom: var(--spacing-12);
-}
-
-p+p {
-    margin-top: var(--spacing-16);
-}
-
-ul,
-ol {
-    padding-left: var(--spacing-24);
-    margin-top: var(--spacing-12);
-}
-
-
-/* Only apply vertical list rhythm inside content areas */
-.prose li+li,
-.privacy-content li+li,
-.about-content li+li,
-.product-block li+li,
-.package-detail li+li {
-    margin-top: var(--spacing-8);
-}
-
-
-/* 3) Make sections feel intentional (less “stacked blocks”) */
-section {
-    padding: var(--spacing-64) 0;
-}
-
-/* was 56 */
-.hero {
-    padding: var(--spacing-80) 0;
-}
-
-/* was 64 */
-@media (min-width: 768px) {
-    section {
-        padding: var(--spacing-96) 0;
-    }
-
-    .hero {
-        padding: var(--spacing-120) 0;
-    }
-}
-
-nav ul li {
-    margin: 0;
-}
-
-nav ul li+li {
-    margin-top: 0 !important;
-}
-
-
-/* 4) Increase spacing inside cards (elegance = breathing room) */
-.portfolio-content,
-.takeaway-card,
-.tiktok-feature,
-.testimonial-card,
-.team-member,
-.product-block,
-.package-detail,
-.contact-form,
-details {
-    padding: var(--spacing-32);
-}
-
-@media (max-width: 768px) {
-
-    .portfolio-content,
-    .takeaway-card,
-    .tiktok-feature,
-    .testimonial-card,
-    .team-member,
-    .product-block,
-    .package-detail,
-    .contact-form,
-    details {
-        padding: var(--spacing-24);
-        /* not too tight */
-    }
-}
-
-/* 5) Stop “everything has a line” from feeling busy */
-:root {
-    --line: rgba(255, 255, 255, 0.06);
-    /* calmer than 0.08 */
-}
-
-/* Reduce border/busy feeling on many cards */
-.portfolio-item,
-.takeaway-card,
-.tiktok-feature,
-.testimonial-card,
-.team-member,
-.product-block,
-.package-detail,
-.contact-form,
-details {
-    border-color: var(--line);
-}
-
-/* Remove “highlight on hover” from FAQ (it adds visual noise) */
-details:hover {
-    border-color: var(--line);
-}
-
-/* 6) Give grids a more premium rhythm on mobile */
-@media (max-width: 1024px) {
-
-    .portfolio-grid,
-    .packages-grid,
-    .product-grid {
-        gap: var(--spacing-32);
-        /* was 24 on collapse; give air */
-    }
-
-    .takeaway-grid,
-    .tiktok-features,
-    .testimonials-grid,
-    .team-grid,
-    .steps-grid {
-        gap: var(--spacing-24);
-    }
-}
-
-/* 7) Make hero feel less “compressed” */
-.hero-badge {
-    margin-bottom: var(--spacing-32);
-}
-
-.hero-subtitle {
-    margin-bottom: var(--spacing-40);
-}
-
-/* 8) Slightly soften nav density */
-nav ul {
-    gap: var(--spacing-24);
-}
-
-/* was 32 */
-
-/* 9) Mobile menu spacing refinement (less cramped) */
-.mobile-menu {
-    padding: var(--spacing-40) var(--spacing-16);
-}
-
-.mobile-nav a {
-    padding: var(--spacing-16) 0;
-}
-
-/* Offset anchor jumps to account for sticky header */
-:target {
-    scroll-margin-top: 192px;
-    /* adjust to your header height */
-}
-
-/* Or more explicit (recommended) */
-#home,
-#work,
-#packages,
-#product,
-#about,
-#contact {
-    scroll-margin-top: 96px;
 }
