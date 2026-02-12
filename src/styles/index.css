@@ -1483,20 +1483,30 @@ h1 {
 }
 
 /* =========================
-   FAQ — Subtle, elegant open
+   FAQ — Subtle, elegant open (NON-destructive)
+   Keeps your existing details styling intact
 ========================= */
 
-.faq-grid details {
-  padding: var(--spacing-32);
-  transition: border-color 220ms ease, background 220ms ease;
+/* Animate ONLY the answer content */
+.faq-grid details .faq-content {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  filter: blur(2px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    filter 220ms ease;
 }
 
-/* Slightly calmer background on open (optional) */
-.faq-grid details[open] {
-  background: linear-gradient(135deg, rgba(23, 26, 31, 0.92) 0%, rgba(30, 34, 41, 0.92) 100%);
+/* When open, reveal answer */
+.faq-grid details[open] .faq-content {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
-/* Make the icon feel less “jumpy” */
+/* Make the plus feel more premium (optional) */
 .faq-grid summary::after {
   transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 200ms ease;
   opacity: 0.9;
@@ -1507,35 +1517,9 @@ h1 {
   opacity: 1;
 }
 
-/* Animate the content (not the whole details) */
-.faq-grid .faq-content {
-  overflow: hidden;
-
-  /* Start closed */
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-4px);
-
-  /* Elegant timing */
-  transition:
-    max-height 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 220ms ease,
-    transform 220ms ease;
-
-  /* Optional: tiny blur for premium feel (very subtle) */
-  filter: blur(2px);
-}
-
-.faq-grid details[open] .faq-content {
-  max-height: 480px; /* big enough for your longest answer */
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
 /* Reduce motion support */
 @media (prefers-reduced-motion: reduce) {
-  .faq-grid .faq-content,
+  .faq-grid details .faq-content,
   .faq-grid summary::after {
     transition: none !important;
     transform: none !important;
