@@ -1,3 +1,10 @@
+/* =========================
+   GOOGLE FONTS (Option A)
+   - Inter for body
+   - Bodoni Moda as Didot-like heading alternative
+   ========================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +23,13 @@
     --accent: #E9D090;
     --accent-2: #F3E1B5;
     --max-width: 1200px;
+
+    /* Typography (Option A) */
+    --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-heading: "Bodoni Moda", Georgia, "Times New Roman", serif;
+
+    /* Heading tuning for this serif on dark UI */
+    --heading-letterspacing: -0.02em;
 
     /* 8px Spacing System */
     --spacing-4: 4px;
@@ -61,12 +75,46 @@ html {
 }
 
 body {
-    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.75;
     /* premium rhythm */
     color: var(--text);
     background: var(--bg-0);
     font-size: 17px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep UI controls on body font for readability */
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+/* =========================
+   HEADINGS (Didot-like)
+   ========================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-header h2,
+.babysitter h2,
+.tiktok-content h2,
+.about-content h2,
+.product-hero h1,
+.product-block h2,
+.product-cta h2,
+.package-detail h2,
+.final-cta h2,
+.footer-brand h3 {
+    font-family: var(--font-heading);
+    letter-spacing: var(--heading-letterspacing);
 }
 
 /* Header */
