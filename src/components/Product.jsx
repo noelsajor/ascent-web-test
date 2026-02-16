@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react'
+import CalendlyPopupButton from "./CalendlyPopupButton";
+
 
 function Product() {
   const sectionRef = useRef(null)
@@ -82,7 +84,7 @@ function Product() {
         <div className="product-cta reveal-item">
           <h2>Let's Talk</h2>
           <p>Fill out the short form and book a call. We'll review your needs and send a pricing estimate after the call.</p>
-          <a href="#contact" className="btn">Book a Call</a>
+          <CalendlyPopupButton label="Book a Call" className="btn" />
           <p className="product-note">Pricing shared after reviewing your specific needs</p>
         </div>
       </div>
