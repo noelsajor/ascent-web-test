@@ -179,7 +179,7 @@ function Packages() {
               <strong>Outcome:</strong> A complete brand system that looks premium, consistent content across platforms,
               and commerce infrastructure ready to sell.
             </div>
-            <a href="#contact" className="btn" style={{ width: '100%' }}>Book a Call</a>
+            <CalendlyPopupButton label="Book a Call" className="btn" />
           </div>
 
           <div
@@ -200,7 +200,7 @@ function Packages() {
               <strong>Outcome:</strong> Your brand looks more premium, content is consistent, and you stop worrying about
               execution. Clarity and momentum.
             </div>
-            <a href="#contact" className="btn">Book a Call</a>
+            <CalendlyPopupButton label="Book a Call" className="btn" />
           </div>
         </div>
       </div>
