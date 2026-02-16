@@ -1,29 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 const CALENDLY_URL =
-  "https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1&utm_source=website&utm_medium=cta&utm_campaign=booking";
+  "https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1";
 
-export default function CalendlyPopupButton({ label = "Book a Call" }) {
+export default function CalendlyPopupButton({
+  label = "Book a Call",
+  className = "btn",
+}) {
   useEffect(() => {
-    if (document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
-      return;
-    }
+    const src = "https://assets.calendly.com/assets/external/widget.js";
+    if (document.querySelector(`script[src="${src}"]`)) return;
 
     const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.src = src;
     script.async = true;
     document.body.appendChild(script);
   }, []);
 
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({ url: CALENDLY_URL });
-    }
-  };
+  const onClick = useCallback((e) => {
+    e.preventDefault();
+    if (!window.Calendly) return;
+    window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+  }, []);
 
   return (
-    <button onClick={openCalendly} className="btn-primary">
+    <a
+      href={CALENDLY_URL}
+      onClick={onClick}
+      className={className}
+      role="button"
+    >
       {label}
-    </button>
+    </a>
   );
 }
