@@ -1,4 +1,6 @@
 import { BubbleBackground } from './ui/bubble-background'
+import CalendlyPopupButton from "./CalendlyPopupButton";
+
 
 function Hero() {
   return (
@@ -24,7 +26,7 @@ function Hero() {
               <li>Social commerce ready (TikTok Shop + live shopping)</li>
             </ul>
             <div className="cta-group">
-              <a href="#contact" className="btn">Book a Call</a>
+              <CalendlyPopupButton label="Book a Call" className="btn" />
               <a href="#work" className="btn btn-secondary">View Work</a>
             </div>
             <p className="cta-note">Limited spots monthly — we protect quality</p>
