@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import logo from '../assets/ascent_logo.svg'
+import CalendlyPopupButton from "./CalendlyPopupButton";
+
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -78,7 +80,7 @@ function Header() {
             <li><a href="/product" className={isActive('product')} onClick={handleNavClick('product')}>Product</a></li>
             <li><a href="/about" className={isActive('about')} onClick={handleNavClick('about')}>About</a></li>
             <li><a href="/contact" className={isActive('contact')} onClick={handleNavClick('contact')}>Contact</a></li>
-            <li><a href="/contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
+            <li><CalendlyPopupButton label="Book a Call" className="btn" /></li>
           </ul>
         </nav>
 
@@ -107,7 +109,7 @@ function Header() {
                 <li><a href="/product" className={isActive('product')} onClick={handleNavClick('product')}>Product</a></li>
                 <li><a href="/about" className={isActive('about')} onClick={handleNavClick('about')}>About</a></li>
                 <li><a href="/contact" className={isActive('contact')} onClick={handleNavClick('contact')}>Contact</a></li>
-                <li><a href="/contact" className="btn" onClick={handleBookCall}>Book a Call</a></li>
+                <li><CalendlyPopupButton label="Book a Call" className="btn" /></li>
               </ul>
             </nav>
           </div>
