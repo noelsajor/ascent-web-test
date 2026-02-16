@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useId } from 'react'
+import CalendlyPopupButton from "./CalendlyPopupButton";
+
 
 function PackageIncludes({ items, defaultVisibleMobile = 4 }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -198,7 +200,7 @@ function Packages() {
               <strong>Outcome:</strong> Your brand looks more premium, content is consistent, and you stop worrying about
               execution. Clarity and momentum.
             </div>
-            <a href="#contact" className="btn" style={{ width: '100%' }}>Book a Call</a>
+            <a href="#contact" className="btn">Book a Call</a>
           </div>
         </div>
       </div>
