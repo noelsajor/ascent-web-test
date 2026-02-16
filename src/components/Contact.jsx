@@ -10,26 +10,44 @@ function Contact() {
   })
   const sectionRef = useRef(null)
 
+  const CALENDLY_URL =
+    'https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1'
+
   useEffect(() => {
+    // Reveal animations
     const revealItems = sectionRef.current?.querySelectorAll('.reveal-item')
-    if (!revealItems) return
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('revealed')
-          }, 100)
-          revealObserver.unobserve(entry.target)
+    if (revealItems) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add('revealed')
+              }, 100)
+              revealObserver.unobserve(entry.target)
+            }
+          })
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
         }
-      })
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    })
+      )
 
-    revealItems.forEach(item => revealObserver.observe(item))
-    return () => revealObserver.disconnect()
+      revealItems.forEach((item) => revealObserver.observe(item))
+      return () => revealObserver.disconnect()
+    }
+  }, [])
+
+  useEffect(() => {
+    // Calendly script (only load once)
+    const src = 'https://assets.calendly.com/assets/external/widget.js'
+    if (document.querySelector(`script[src="${src}"]`)) return
+
+    const script = document.createElement('script')
+    script.src = src
+    script.async = true
+    document.body.appendChild(script)
   }, [])
 
   const handleChange = (e) => {
@@ -51,8 +69,12 @@ function Contact() {
       <div className="container">
         <div className="section-header reveal-item">
           <h2>Book a Call</h2>
-          <p>Fill out the form below and book your call directly. We'll review and send an estimate after.</p>
+          <p>
+            Fill out the form below and book your call directly. We'll review
+            and send an estimate after.
+          </p>
         </div>
+
         <div className="form-wrapper">
           <form className="contact-form reveal-item" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -67,6 +89,7 @@ function Contact() {
                 required
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="brand">Brand / Website</label>
               <input
@@ -78,6 +101,7 @@ function Contact() {
                 onChange={handleChange}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="product">What do you sell?</label>
               <input
@@ -89,6 +113,7 @@ function Contact() {
                 onChange={handleChange}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="challenge">Biggest challenge right now</label>
               <textarea
@@ -99,6 +124,7 @@ function Contact() {
                 onChange={handleChange}
               ></textarea>
             </div>
+
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
@@ -111,11 +137,19 @@ function Contact() {
                 required
               />
             </div>
-            <button type="submit" className="btn" style={{ width: '100%' }}>Submit & Book Call</button>
+
+            <button type="submit" className="btn" style={{ width: '100%' }}>
+              Submit & Book Call
+            </button>
           </form>
+
+          {/* Calendly Inline Embed */}
           <div className="calendly-placeholder reveal-item">
-            <p><strong>Calendly Embed Here</strong></p>
-            <p style={{ marginTop: 'var(--spacing-sm)' }}>After submitting, you'll be able to book your call directly on this page.</p>
+            <div
+              className="calendly-inline-widget"
+              data-url={CALENDLY_URL}
+              style={{ minWidth: 320, width: '100%', height: 760 }}
+            />
           </div>
         </div>
       </div>
