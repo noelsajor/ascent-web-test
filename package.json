@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.1",
     "@astrojs/sitemap": "^3.1.2",
     "@sanity/client": "^6.15.11",
     "astro": "^4.5.15"
