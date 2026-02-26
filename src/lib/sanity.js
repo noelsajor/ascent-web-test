@@ -10,11 +10,13 @@ export const client = projectId
   : null;
 
 export async function getAllPosts() {
-  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
+  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc, _createdAt desc) {
     title,
     slug,
     mainImage,
     publishedAt,
+    _createdAt,
+    body,
     excerpt,
     author->{name, image},
     categories[]->{title}
@@ -24,11 +26,12 @@ export async function getAllPosts() {
 }
 
 export async function getPostBySlug(slug) {
-  const query = `*[_type == "post" && slug.current == $slug][0] {
+  const query = `*[_type == "post" && slug.current == $slug && !(_id in path('drafts.**'))][0] {
     title,
     slug,
     mainImage,
     publishedAt,
+    _createdAt,
     body,
     author->{name, image},
     categories[]->{title}
@@ -38,11 +41,12 @@ export async function getPostBySlug(slug) {
 }
 
 export async function getLatestPosts(count = 3) {
-  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) [0...${count}] {
+  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc, _createdAt desc) [0...${count}] {
     title,
     slug,
     mainImage,
     publishedAt,
+    _createdAt,
     excerpt
   }`;
   if (!client) return [];
@@ -50,11 +54,12 @@ export async function getLatestPosts(count = 3) {
 }
 
 export async function getRelatedPosts(slug, categoryTitle = '') {
-  const query = `*[_type == "post" && slug.current != $slug && $categoryTitle in categories[]->title] [0...3] {
+  const query = `*[_type == "post" && slug.current != $slug && $categoryTitle in categories[]->title && !(_id in path('drafts.**'))] [0...3] {
     title,
     slug,
     mainImage,
     publishedAt,
+    _createdAt,
     excerpt
   }`;
   if (!client) return [];
