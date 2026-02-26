@@ -1,0 +1,17 @@
+{
+  "name": "ascent-website-astro",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.1.2",
+    "@sanity/client": "^6.15.11",
+    "astro": "^4.5.15"
+  }
+}

@@ -1,0 +1,43 @@
+---
+import BubbleBackground from './BubbleBackground.astro';
+---
+
+<BubbleBackground interactive={true}>
+  <section class="hero-inner" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge">Done-For-You Agency</span>
+        </div>
+        <h1>
+          Brand Creation &
+          <br />
+          Growth Package
+        </h1>
+        <p class="hero-subtitle">
+          Done-for-you brand building from idea to execution. We create the brand, 
+          build the content, run your social, and set up commerce that sells.
+        </p>
+        <ul class="proof-points">
+          <li>We handle execution end-to-end</li>
+          <li>Content-first brand building</li>
+          <li>Social commerce ready (TikTok Shop + live shopping)</li>
+        </ul>
+        <div class="cta-group">
+          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+            Book a Call
+          </a>
+          <a href="/work" class="btn btn-secondary">View Work</a>
+        </div>
+        <p class="cta-note">Limited spots monthly — we protect quality</p>
+      </div>
+    </div>
+  </section>
+</BubbleBackground>
+
+<style>
+  /* Local overrides if needed, but keeping global CSS as primary source */
+  .hero-inner {
+    padding: var(--spacing-80) 0;
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+const portfolioItems = [
+  {
+    id: 'sana-honey',
+    tags: ['Supplements', 'Health', 'Brand'],
+    title: 'SANA Honey',
+    description: 'Refreshed the e-commerce experience to highlight the unique honey-based form factor. Implemented a subscription-first approach and produced lifestyle content that positioned the brand as a daily wellness essential.',
+    url: 'https://www.sanahoney.com/',
+    image: '/assets/SANA_cover.webp',
+    imageAlt: 'SANA Honey brand and e-commerce showcase'
+  },
+  {
+    id: 'nuud-pleasures',
+    tags: ['Wellness', 'E-commerce', 'Brand'],
+    title: 'NUUD Pleasures',
+    description: 'End-to-end brand architecture and Shopify build. We developed a compliance-friendly content strategy that navigates sensitive ad policies while building community through education on intimacy and adaptogens.',
+    url: 'https://nuudpleasures.com/',
+    image: '/assets/NUUD_cover.webp',
+    imageAlt: 'NUUD Pleasures brand identity and website'
+  },
+  {
+    id: 'strike',
+    tags: ['Legal THC', 'E-commerce', 'Brand'],
+    title: 'Strike',
+    description: 'Launched the digital flagship for this premium legal THC brand. Focused on high-impact visual storytelling and a conversion-optimized user flow that educates customers on product quality and safety.',
+    url: 'https://strikebrands.co/',
+    image: '/assets/STRIKE_cover.webp',
+    imageAlt: 'Strike legal THC brand website'
+  }
+];
+---
+
+<section class="portfolio" id="work">
+  <div class="container">
+    <div class="section-header reveal-item">
+      <h2>Selected Work</h2>
+      <p>Brand systems and content execution designed to support growth and clarity.</p>
+    </div>
+    <div class="portfolio-grid">
+      {portfolioItems.map(item => (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" class="portfolio-item reveal-item">
+          <div class="portfolio-image">
+            <img 
+              src={item.image} 
+              alt={item.imageAlt}
+              loading="lazy"
+            />
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-tags">
+              {item.tags.map(tag => (
+                <span class="portfolio-tag">{tag}</span>
+              ))}
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <span class="portfolio-link">Visit Website →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

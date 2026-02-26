@@ -1,0 +1,27 @@
+---
+import BlogCard from './BlogCard.astro';
+import { getLatestPosts } from '../lib/sanity';
+
+const posts = await getLatestPosts(3).catch(() => []);
+---
+
+{posts.length > 0 && (
+  <section class="blog-teaser" id="blog">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <h2>Latest from the Blog</h2>
+        <p>Insights on brand creation, content systems, and commerce execution.</p>
+      </div>
+      
+      <div class="portfolio-grid">
+        {posts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+      
+      <div class="section-footer reveal-item" style="margin-top: var(--spacing-48); text-align: center;">
+        <a href="/blog" class="btn">View All Posts</a>
+      </div>
+    </div>
+  </section>
+)}

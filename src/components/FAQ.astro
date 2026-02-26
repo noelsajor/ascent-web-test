@@ -1,0 +1,50 @@
+---
+const faqs = [
+  {
+    question: "Is this for tiny brands or bigger brands?",
+    answer: "We work with small businesses in early to growth stage. If you're overwhelmed by managing brand, content, and execution yourself, you're a fit. If you're a huge corporation with an internal team, probably not."
+  },
+  {
+    question: "Do you actually do the content creation and posting?",
+    answer: "Yes. We create the content, schedule it, post it, and manage your social accounts. You approve direction upfront, but we handle daily execution so you don't have to think about it."
+  },
+  {
+    question: "Can you work with my existing brand or do I need a full rebuild?",
+    answer: "Both. The Enhancement Package is for existing brands that need elevation and consistent execution. The Creation Package is for new brands or complete rebuilds. We assess during the call."
+  },
+  {
+    question: "Do you build Shopify sites too?",
+    answer: "Yes. Shopify design and build is included in the Creation Package. We also optimize existing Shopify sites in the Enhancement Package if needed."
+  },
+  {
+    question: "How fast can we start?",
+    answer: "After the call and estimate approval, typically 1–2 weeks. We protect quality by limiting monthly client intake, so there may be a short wait depending on capacity."
+  },
+  {
+    question: "What if I want to manage some parts myself?",
+    answer: "Then we're probably not a fit. Our model is built for founders who want one partner to handle execution end-to-end. If you want to DIY parts of it, you'll be better served elsewhere."
+  },
+  {
+    question: "Do you guarantee specific results or metrics?",
+    answer: "No. We guarantee quality execution, consistency, and strategic clarity. We can't control what your audience does, but we can control showing up with premium content daily."
+  }
+];
+---
+
+<section>
+  <div class="container">
+    <div class="section-header reveal-item">
+      <h2>Common Questions</h2>
+    </div>
+    <div class="faq-grid">
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.question}</summary>
+          <div class="faq-content">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

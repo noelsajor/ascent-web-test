@@ -1,0 +1,99 @@
+---
+const CALENDLY_URL = 'https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1';
+---
+
+<section class="contact-form-section" id="contact">
+  <div class="container">
+    <div class="section-header reveal-item">
+      <h2>Book a Call</h2>
+      <p>
+        Fill out the form below and book your call directly. We'll review
+        and send an estimate after.
+      </p>
+    </div>
+
+    <div class="form-wrapper">
+      <form id="contact-form" class="contact-form reveal-item">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Full name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="brand">Brand / Website</label>
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            placeholder="yourbrand.com or brand name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="product">What do you sell?</label>
+          <input
+            type="text"
+            id="product"
+            name="product"
+            placeholder="Skincare, apparel, home goods, etc."
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="challenge">Biggest challenge right now</label>
+          <textarea
+            id="challenge"
+            name="challenge"
+            placeholder="What's overwhelming you or holding you back?"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@email.com"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%">
+          Submit & Book Call
+        </button>
+      </form>
+
+      {/* Calendly Inline Embed */}
+      <div class="calendly-placeholder reveal-item">
+        <div
+          class="calendly-inline-widget"
+          data-url={CALENDLY_URL}
+          style="min-width: 320px; width: 100%; height: 760px;"
+        ></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      console.log('Form submitted:', data);
+      alert('Thank you! Form submitted successfully.');
+      // Actual submission logic would go here
+    });
+  }
+</script>
+
+<script is:inline src="https://assets.calendly.com/assets/external/widget.js"></script>

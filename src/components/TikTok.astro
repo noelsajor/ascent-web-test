@@ -1,0 +1,121 @@
+---
+const videos = {
+  featured: {
+    title: 'Featured: Ascent content system example',
+    embed: 'https://www.youtube-nocookie.com/embed/wjmEjd4h64Q',
+    watch: 'https://www.youtube.com/watch?v=wjmEjd4h64Q'
+  },
+  secondary1: {
+    title: 'More: Live / commerce content',
+    embed: 'https://www.youtube-nocookie.com/embed/H5aM1w7OX44',
+    watch: 'https://www.youtube.com/watch?v=H5aM1w7OX44'
+  },
+  secondary2: {
+    title: 'More: Product content / demo',
+    embed: 'https://www.youtube-nocookie.com/embed/cifI20B01cc',
+    watch: 'https://www.youtube.com/watch?v=cifI20B01cc'
+  }
+};
+---
+
+<section class="tiktok-section" id="content">
+  <div class="container">
+    <div class="tiktok-content reveal-item">
+      <h2>We Build Content to Sell, Not Just to Post</h2>
+      <p>
+        Most agencies post content and hope it works. We build content systems designed for commerce — TikTok Shop,
+        live shopping, product demos, and content that converts.
+      </p>
+      <p>This is where brand-building meets actual revenue.</p>
+
+      <div class="tiktok-links">
+        <a class="btn btn-secondary" href="https://www.youtube.com/@AscentMgnt/shorts" target="_blank" rel="noreferrer">
+          Watch Shorts
+        </a>
+        <a class="btn btn-secondary" href="https://www.youtube.com/@AscentMgnt/playlists" target="_blank" rel="noreferrer">
+          View Playlists
+        </a>
+      </div>
+    </div>
+
+    <div class="tiktok-media reveal-item">
+      <div class="tiktok-media-grid">
+        {/* Featured */}
+        <article class="video-card video-card--featured">
+          <div class="video-frame">
+            <iframe
+              src={videos.featured.embed}
+              title={videos.featured.title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+          <div class="video-meta">
+            <h3 class="video-title">Featured video</h3>
+            <a class="video-link" href={videos.featured.watch} target="_blank" rel="noreferrer">
+              Watch on YouTube →
+            </a>
+          </div>
+        </article>
+
+        {/* Right column: two secondary videos */}
+        <div class="video-stack">
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src={videos.secondary1.embed}
+                title={videos.secondary1.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+            <div class="video-meta">
+              <h3 class="video-title">More examples</h3>
+              <a class="video-link" href={videos.secondary1.watch} target="_blank" rel="noreferrer">
+                Watch on YouTube →
+              </a>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src={videos.secondary2.embed}
+                title={videos.secondary2.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+            <div class="video-meta">
+              <h3 class="video-title">More examples</h3>
+              <a class="video-link" href={videos.secondary2.watch} target="_blank" rel="noreferrer">
+                Watch on YouTube →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="tiktok-features">
+      <div class="tiktok-feature reveal-item">
+        <h3>TikTok Shop Setup</h3>
+        <p>Full shop configuration, product listings, optimization for discoverability, and integration with your content strategy.</p>
+      </div>
+      <div class="tiktok-feature reveal-item">
+        <h3>Live Shopping Content</h3>
+        <p>Scripted live sessions, product demos, and real-time engagement designed to drive sales during streams.</p>
+      </div>
+      <div class="tiktok-feature reveal-item">
+        <h3>Product Content Systems</h3>
+        <p>Repeatable templates for demos, UGC-style content, and value-driven posts that sell without feeling salesy.</p>
+      </div>
+    </div>
+  </div>
+</section>

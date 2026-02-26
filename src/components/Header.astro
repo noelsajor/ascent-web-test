@@ -1,0 +1,141 @@
+---
+const { activePage = 'home' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/work', label: 'Work', key: 'work' },
+  { href: '/packages', label: 'Packages', key: 'packages' },
+  { href: '/product', label: 'Product', key: 'product' },
+  { href: '/about', label: 'About', key: 'about' },
+  { href: '/blog', label: 'Blog', key: 'blog' },
+  { href: '/contact', label: 'Contact', key: 'contact' },
+];
+---
+
+<header id="main-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="Ascent Mgnt">
+      <img src="/assets/ascent_logo.svg" alt="Ascent Mgnt" class="logo-img" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <ul>
+        {navItems.map((item) => (
+          <li>
+            <a 
+              href={item.href} 
+              class={activePage === item.key ? 'active' : ''}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+            Book a Call
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Burger Menu Button -->
+    <button
+      id="burger-btn"
+      class="burger-menu"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-overlay" class="mobile-menu-overlay" style="display: none;">
+    <div class="mobile-menu">
+      <nav class="mobile-nav">
+        <ul>
+          {navItems.map((item) => (
+            <li>
+              <a 
+                href={item.href} 
+                class={activePage === item.key ? 'active' : ''}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+             <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+              Book a Call
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  
+  // Header scroll logic
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset >= 12) {
+      header?.classList.add('is-scrolled');
+    } else {
+      header?.classList.remove('is-scrolled');
+    }
+  }, { passive: true });
+
+  // Mobile menu toggle logic
+  function toggleMenu() {
+    const isOpen = burgerBtn?.getAttribute('aria-expanded') === 'true';
+    burgerBtn?.setAttribute('aria-expanded', !isOpen);
+    burgerBtn?.classList.toggle('active');
+    
+    if (mobileOverlay) {
+      if (!isOpen) {
+        mobileOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+  }
+
+  burgerBtn?.addEventListener('click', toggleMenu);
+  
+  mobileOverlay?.addEventListener('click', (e) => {
+    if (e.target === mobileOverlay) {
+      toggleMenu();
+    }
+  });
+
+  // ESC key to close mobile menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && burgerBtn?.classList.contains('active')) {
+      toggleMenu();
+    }
+  });
+
+  // Calendly logic (minimal JS)
+  const triggers = document.querySelectorAll('.calendly-trigger');
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      // @ts-ignore
+      if (window.Calendly) {
+        // @ts-ignore
+        window.Calendly.initPopupWidget({ url: (e.target as HTMLAnchorElement).href });
+      }
+    });
+  });
+</script>
+
+<script is:inline src="https://assets.calendly.com/assets/external/widget.js"></script>

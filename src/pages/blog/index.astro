@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getAllPosts } from '../../lib/sanity';
+
+const posts = await getAllPosts().catch(() => []);
+---
+
+<BaseLayout title="Blog | Ascent Mgnt" activePage="blog">
+  <section class="portfolio">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <h2>Blog</h2>
+        <p>Insights on brand building, content systems, and commerce execution.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <BlogCard post={post} />
+          ))
+        ) : (
+          <div class="reveal-item">
+            <p>No posts found. Add some content in Sanity Studio!</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

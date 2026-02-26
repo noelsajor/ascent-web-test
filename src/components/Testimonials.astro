@@ -1,0 +1,36 @@
+---
+const testimonials = [
+  {
+    quote: "They took everything off my plate. I was juggling three freelancers and still stressed about consistency. Now I don't think about it — they just handle it.",
+    author: "Sarah Chen",
+    role: "Founder, Skincare Brand"
+  },
+  {
+    quote: "Content is finally consistent. Our brand actually looks legit now. Before, it felt scattered and DIY. Ascent made it look premium without the BS agency fluff.",
+    author: "Marcus Rivera",
+    role: "Co-Founder, Home Goods"
+  },
+  {
+    quote: "I hired them because I didn't want to think anymore. Best decision. They execute, keep me updated, and I can focus on running the business instead of chasing creatives.",
+    author: "Jennifer Park",
+    role: "Owner, Fashion Brand"
+  }
+];
+---
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header reveal-item">
+      <h2>What Clients Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((testimonial) => (
+        <div class="testimonial-card reveal-item">
+          <p class="testimonial-quote">"{testimonial.quote}"</p>
+          <p class="testimonial-author">{testimonial.author}</p>
+          <p class="testimonial-role">{testimonial.role}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

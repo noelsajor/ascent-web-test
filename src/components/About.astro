@@ -1,0 +1,153 @@
+---
+const teamMembers = [
+  {
+    role: 'Founder & Managing Director',
+    description: 'Strategic vision, client relationships, execution standards',
+    name: 'Ethan Barak',
+    avatar: '/assets/ethan.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/ethan-barak-40305aa1/'
+  },
+  {
+    role: 'Project Manager',
+    description: 'Project coordination, timelines, client communication',
+    name: 'Andrea Del Sol',
+    avatar: '/assets/andrea_s.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/andreadelsol/'
+  },
+  {
+    role: 'Creative Director',
+    description: 'Brand strategy, visual identity, creative direction',
+    name: 'Alberto Olivero',
+    avatar: '/assets/alberto.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/ajolivero/'
+  },
+  {
+    role: 'Developer (Shopify/Frontend)',
+    description: 'Shopify builds, optimization, technical execution',
+    name: 'Jose Leon',
+    avatar: '/assets/jose.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/noelsajor/'
+  },
+  {
+    role: 'Social Media Manager',
+    description: 'Content creation, daily posting, community engagement',
+    name: 'Kimberly Salamanca',
+    avatar: '/assets/kim.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/kimberly-salamanca-gonzalez-560708a7/?locale=en_US'
+  },
+  {
+    role: 'Search & GEO Specialist',
+    description: 'SEO strategy, content discoverability, technical SEO',
+    name: 'Lourdes Uzcategui',
+    avatar: '/assets/lourdes.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/lourdes-m-uzc%C3%A1tegui-brice%C3%B1o/'
+  },
+  {
+    role: 'Content Producer',
+    description: 'shoots, edits, delivers short-form + long-form content',
+    name: 'Andrea Mikaty',
+    avatar: '/assets/andrea_m.webp',
+    linkedinUrl: 'https://www.linkedin.com/in/andrea-mikaty-142654306/'
+  }
+];
+---
+
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-content reveal-item">
+      <h2>About Ascent</h2>
+      <p>
+        We're a done-for-you creative agency built for small business founders who are tired of juggling
+        freelancers and managing execution themselves.
+      </p>
+      <p>
+        Our model is simple: you hire us so you don't have to think. We handle brand creation, content systems,
+        social execution, and commerce infrastructure from start to finish.
+      </p>
+      <p>
+        No fluff. No corporate buzzwords. Just consistent, high-quality execution designed to make your brand look
+        premium and show up daily.
+      </p>
+    </div>
+
+    <div class="section-header reveal-item" style="margin-top: var(--spacing-48)">
+      <h2>Team</h2>
+    </div>
+
+    <div class="team-grid">
+      {teamMembers.map((member) => (
+        <div class="team-member reveal-item">
+          <div class="team-avatar">
+            {member.avatar ? (
+              <img
+                src={member.avatar}
+                alt={`${member.name || member.role} profile photo`}
+                loading="lazy"
+                width="120"
+                height="120"
+              />
+            ) : (
+              'Photo'
+            )}
+          </div>
+
+          <h3>{member.name}</h3>
+          <p>{member.role}</p>
+
+          {member.linkedinUrl && (
+            <a
+              href={member.linkedinUrl}
+              class="team-linkedin"
+              aria-label={`${member.name || member.role} LinkedIn profile`}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="currentColor"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="podcast-section reveal-item" style="margin-top: var(--spacing-48)">
+      <h3>Podcast & Links</h3>
+
+      <div class="podcast-links">
+        <a
+          href="https://spotify.com"
+          aria-label="Spotify"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Spotify"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512" fill="currentColor"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.7c-4.2 0-8.9-1.2-13.3-4.3-43.5-30.8-97.3-34.1-153-21.3-10.2 2.4-20.4-4.1-22.8-14.3-2.4-10.2 4.1-20.4 14.3-22.8 64.1-14.7 126.9-10.1 177.3 25.6 8.4 5.9 10.5 17.6 4.5 26.1-3 4.2-7 6.7-11 6.7zm30.3-67.1c-5.2 0-10.3-1.7-14.5-5.1-53.1-39-136.9-46.8-202.1-31-12.7 3.1-25.5-4.7-28.6-17.4-3.1-12.7 4.7-25.5 17.4-28.6 77.8-18.7 172.5-9.8 235.1 36.1 10.4 7.6 12.8 22.1 5.2 32.5-3.4 4.5-8.2 6.5-12.5 6.5zm3.1-69.1c-6.2 0-12.6-2.1-17.8-6.3-64.8-43-179.8-51.1-248.8-29.4-15.1 4.7-31.2-3.8-35.9-18.9-4.7-15.1 3.8-31.2 18.9-35.9 84.1-26.4 212.8-17.1 289.4 34.1 12.8 8.6 16.3 25.8 7.7 38.6-3.8 5.7-9.5 8.9-13.5 8.9z"/></svg>
+        </a>
+
+        <a
+          href="https://podcasts.apple.com"
+          aria-label="Apple Podcasts"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Apple Podcasts"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 29.8-54.4 31.2-55.2-17-25-43.6-28.4-53.1-28.8-22.4-2.3-43.8 13.1-55.2 13.1-11.3 0-29.1-12.8-47.7-12.4-24.5 .4-47 14.3-59.6 36.1-25.4 44.1-6.5 109.5 18.1 145.1 12 17.4 26.3 36.9 45.1 36.3 18.1-.7 24.9-11.6 46.7-11.6 21.7 0 28 11.6 47 11.2 19.3-.3 32-17.8 43.8-35.1 13.6-19.9 19.2-39.2 19.5-40.2-.4-.2-37.5-14.4-37.7-57.1zm-48.4-135.2c10-12.1 16.7-28.9 14.9-45.7-14.4 .6-31.8 9.5-42.2 21.6-9.4 10.7-17.5 27.9-15.3 44.3 16 1.2 32.5-8.1 42.6-20.2z"/></svg>
+        </a>
+
+        <a
+          href="https://youtube.com"
+          aria-label="YouTube"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="YouTube"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="currentColor"><path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-12.5c23.5-6.3 42-24.1 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V174.4l142.7 81.6-142.7 81.6z"/></svg>
+        </a>
+
+        <a href="mailto:hello@ascentmgnt.com" aria-label="Newsletter" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

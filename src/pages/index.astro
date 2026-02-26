@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Babysitter from '../components/Babysitter.astro';
+import Packages from '../components/Packages.astro';
+import TikTok from '../components/TikTok.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import BlogTeaser from '../components/BlogTeaser.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+const title = "Ascent Mgnt | Done-For-You Brand Creation & Content";
+const description = "Done-for-you brand building from idea to execution. We create the brand, build the content, run your social, and set up commerce that sells.";
+---
+
+<BaseLayout title={title} description={description} activePage="home">
+  <Hero />
+  <Portfolio />
+  <Babysitter />
+  <Packages />
+  <TikTok />
+  <HowItWorks />
+  <BlogTeaser />
+  <Testimonials />
+  <FAQ />
+  <FinalCTA />
+</BaseLayout>

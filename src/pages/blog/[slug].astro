@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getPostBySlug, getRelatedPosts } from '../../lib/sanity';
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const relatedPosts = await getRelatedPosts(slug, post.categories?.[0]?.title).catch(() => []);
+
+// Simple Helper to build Sanity image URLs
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production';
+
+function urlFor(source) {
+  if (!source || !source.asset || !source.asset._ref) return '';
+  const ref = source.asset._ref;
+  const [_file, id, dimensions, extension] = ref.split('-');
+  return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dimensions}.${extension}`;
+}
+
+const mainImageUrl = urlFor(post.mainImage);
+
+// Very basic Portable Text to HTML converter
+function portableTextToHtml(blocks) {
+  if (!blocks) return '';
+  return blocks.map(block => {
+    if (block._type !== 'block' || !block.children) {
+      if (block._type === 'image') {
+        return `<img src="${urlFor(block)}" alt="" />`;
+      }
+      return '';
+    }
+
+    const { style = 'normal' } = block;
+    const children = block.children.map(child => {
+      let text = child.text;
+      if (child.marks) {
+        // Very basic mark handling (strong, em)
+        if (child.marks.includes('strong')) text = `<strong>${text}</strong>`;
+        if (child.marks.includes('em')) text = `<em>${text}</em>`;
+      }
+      return text;
+    }).join('');
+
+    switch (style) {
+      case 'h1': return `<h1>${children}</h1>`;
+      case 'h2': return `<h2>${children}</h2>`;
+      case 'h3': return `<h3>${children}</h3>`;
+      case 'h4': return `<h4>${children}</h4>`;
+      case 'blockquote': return `<blockquote>${children}</blockquote>`;
+      default: return `<p>${children}</p>`;
+    }
+  }).join('');
+}
+
+const bodyHtml = portableTextToHtml(post.body);
+---
+
+<BaseLayout title={`${post.title} | Ascent Mgnt`} activePage="blog">
+  <article class="post-section">
+    <div class="container">
+      <div class="post-header reveal-item">
+        <div class="post-meta">
+          {post.categories?.map((cat) => (
+            <span class="portfolio-tag">{cat.title}</span>
+          ))}
+          <span class="post-date">{new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        </div>
+        <h1>{post.title}</h1>
+        {post.author && (
+          <div class="post-author">
+            {post.author.image && <img src={urlFor(post.author.image)} alt={post.author.name} class="author-avatar" />}
+            <span>By {post.author.name}</span>
+          </div>
+        )}
+      </div>
+
+      {mainImageUrl && (
+        <div class="post-main-image reveal-item">
+          <img src={mainImageUrl} alt={post.title} />
+        </div>
+      )}
+
+      <div class="post-content reveal-item" set:html={bodyHtml} />
+
+      {relatedPosts.length > 0 && (
+        <div class="related-posts reveal-item">
+          <h2>Related Posts</h2>
+          <div class="portfolio-grid">
+            {relatedPosts.map((p) => (
+              <BlogCard post={p} />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .post-section {
+    padding: var(--spacing-80) 0;
+  }
+  .post-header {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-48);
+    text-align: center;
+  }
+  .post-meta {
+    margin-bottom: var(--spacing-24);
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-16);
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+  .post-header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+  }
+  .post-author {
+    margin-top: var(--spacing-24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-12);
+  }
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .post-main-image {
+    max-width: 1000px;
+    margin: 0 auto var(--spacing-64);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .post-main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .post-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+  .post-content p {
+    margin-bottom: var(--spacing-24);
+  }
+  .post-content h2 {
+    margin: var(--spacing-48) 0 var(--spacing-24);
+  }
+  .related-posts {
+    margin-top: var(--spacing-120);
+    border-top: 1px solid var(--line);
+    padding-top: var(--spacing-64);
+  }
+  .related-posts h2 {
+    margin-bottom: var(--spacing-40);
+    text-align: center;
+  }
+</style>

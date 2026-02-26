@@ -1,0 +1,183 @@
+---
+const creationItems = [
+  'Brand foundation and strategy',
+  'Visual identity and packaging design',
+  'Shopify site design and build',
+  'Content strategy and templates',
+  'Social media setup and execution',
+  'TikTok Shop and live shopping setup',
+  'Ongoing content creation and posting',
+  'Creative direction and optimization'
+];
+
+const enhancementItems = [
+  'Visual and content audit',
+  'Strategic refinement and positioning',
+  'Content upgrade and systems',
+  'Social media management and posting',
+  'Shopify optimization (if applicable)',
+  'Creative execution and asset creation',
+  'Ongoing management and optimization'
+];
+---
+
+<section class="packages-section" id="packages">
+  <div class="container">
+    <div class="section-header reveal-item">
+      <h2>Choose Your Package</h2>
+      <p>Two packages designed for different stages. Both focused on execution and clarity.</p>
+    </div>
+
+    <div class="packages-grid">
+      <div
+        class="package-card featured reveal-item selected"
+        data-package="creation"
+        tabindex="0"
+        role="button"
+        aria-pressed="true"
+      >
+        <h3>Creation Package</h3>
+        <p class="package-subtitle">Build your brand from zero or rebuild it right</p>
+        <p class="package-for">For: New brands or complete rebuilds</p>
+
+        <div class="package-includes-wrap">
+          <ul class="package-includes package-includes--desktop">
+            {creationItems.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+
+          <div class="package-includes--mobile">
+            <ul class="package-includes">
+              {creationItems.slice(0, 4).map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            <div class="package-includes-collapsible">
+              <ul class="package-includes">
+                {creationItems.slice(4).map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <button type="button" class="package-includes-toggle" aria-expanded="false">
+              Show all included ({creationItems.length})
+              <span class="package-includes-chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="package-outcome">
+          <strong>Outcome:</strong> A complete brand system that looks premium, consistent content across platforms,
+          and commerce infrastructure ready to sell.
+        </div>
+        <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+          Book a Call
+        </a>
+      </div>
+
+      <div
+        class="package-card reveal-item"
+        data-package="enhancement"
+        tabindex="0"
+        role="button"
+        aria-pressed="false"
+      >
+        <h3>Enhancement Package</h3>
+        <p class="package-subtitle">Elevate an existing brand with execution and optimization</p>
+        <p class="package-for">For: Existing brands needing elevation</p>
+
+        <div class="package-includes-wrap">
+          <ul class="package-includes package-includes--desktop">
+            {enhancementItems.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+
+          <div class="package-includes--mobile">
+            <ul class="package-includes">
+              {enhancementItems.slice(0, 4).map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            <div class="package-includes-collapsible">
+              <ul class="package-includes">
+                {enhancementItems.slice(4).map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <button type="button" class="package-includes-toggle" aria-expanded="false">
+              Show all included ({enhancementItems.length})
+              <span class="package-includes-chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="package-outcome">
+          <strong>Outcome:</strong> Your brand looks more premium, content is consistent, and you stop worrying about
+          execution. Clarity and momentum.
+        </div>
+        <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initPackages() {
+    const cards = document.querySelectorAll('.package-card');
+    
+    cards.forEach(card => {
+      // Toggle selection logic
+      card.addEventListener('click', () => {
+        cards.forEach(c => {
+          c.classList.remove('selected');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        card.classList.add('selected');
+        card.setAttribute('aria-pressed', 'true');
+      });
+
+      // Show/Hide more items logic
+      const toggleBtn = card.querySelector('.package-includes-toggle');
+      const collapsible = card.querySelector('.package-includes-collapsible') as HTMLElement;
+      const list = collapsible?.querySelector('ul');
+
+      if (toggleBtn && collapsible && list) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent card selection toggle
+          const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+          const newExpanded = !isExpanded;
+          
+          toggleBtn.setAttribute('aria-expanded', String(newExpanded));
+          toggleBtn.childNodes[0].textContent = newExpanded ? 'Show less' : `Show all included (${list.children.length + 4})`;
+          
+          if (newExpanded) {
+            collapsible.style.maxHeight = list.scrollHeight + 'px';
+            collapsible.classList.add('is-expanded');
+          } else {
+            collapsible.style.maxHeight = '0px';
+            collapsible.classList.remove('is-expanded');
+          }
+        });
+      }
+    });
+  }
+
+  initPackages();
+  document.addEventListener('astro:after-swap', initPackages);
+</script>
+
+<style>
+  .package-includes-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .package-includes-collapsible.is-expanded {
+    /* transition handled by inline style for exact height */
+  }
+</style>

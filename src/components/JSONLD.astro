@@ -1,0 +1,55 @@
+---
+const { type = 'WebSite', title, description, url = Astro.url, image } = Astro.props;
+
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ascent Mgnt",
+  "url": "https://ascentmgnt.com",
+  "logo": "https://ascentmgnt.com/assets/ascent_logo.svg",
+  "description": "Done-for-you brand creation and growth agency."
+};
+
+const webSiteData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": title || "Ascent Mgnt",
+  "url": url,
+  "description": description
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://ascentmgnt.com/"
+    }
+  ]
+};
+
+// If it's a blog post, add BlogPosting
+let blogPostingData = null;
+if (type === 'BlogPosting') {
+  blogPostingData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description,
+    "image": image,
+    "url": url,
+    "author": {
+      "@type": "Organization",
+      "name": "Ascent Mgnt"
+    }
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationData)} />
+<script type="application/ld+json" set:html={JSON.stringify(webSiteData)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+{blogPostingData && <script type="application/ld+json" set:html={JSON.stringify(blogPostingData)} />}

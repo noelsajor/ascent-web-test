@@ -1,0 +1,36 @@
+---
+const { post } = Astro.props;
+
+// Simple helper to build Sanity image URLs
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production';
+
+function urlFor(source) {
+  if (!source || !source.asset || !source.asset._ref) return '';
+  const ref = source.asset._ref;
+  const [_file, id, dimensions, extension] = ref.split('-');
+  return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dimensions}.${extension}`;
+}
+
+const imageUrl = urlFor(post.mainImage);
+---
+
+<a href={`/blog/${post.slug.current}`} class="portfolio-item reveal-item">
+  <div class="portfolio-image">
+    {imageUrl ? (
+      <img src={imageUrl} alt={post.title} loading="lazy" />
+    ) : (
+      <div class="image-placeholder">No Image</div>
+    )}
+  </div>
+  <div class="portfolio-content">
+    <div class="portfolio-tags">
+      {post.categories?.map((cat) => (
+        <span class="portfolio-tag">{cat.title}</span>
+      ))}
+    </div>
+    <h3>{post.title}</h3>
+    <p>{post.excerpt}</p>
+    <span class="portfolio-link">Read Post →</span>
+  </div>
+</a>
