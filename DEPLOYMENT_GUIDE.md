@@ -22,9 +22,19 @@ Run these commands to update your repository:
 
 ```bash
 git add .
-git commit -m "Migrate from React to Astro + Sanity"
-git push origin main
+git commit -m "Migrate project to Astro + Sanity"
+git push origin dev
 ```
+
+## Step 2.5: Preview on Vercel (Testing the Dev Branch)
+
+Vercel automatically creates a **Preview Deployment** for every branch you push. 
+
+1.  Go to your Vercel Dashboard.
+2.  Select your project.
+3.  Look for the latest deployment from the `dev` branch.
+4.  **Crucial**: Even for Previews, you must add the **Environment Variables** (Step 3) in Vercel settings and ensure they are available for "Preview" environments.
+5.  Open the Preview URL to test everything before merging to `main`.
 
 ## Step 3: Configure Vercel
 
@@ -47,10 +57,24 @@ To ensure your new website can fetch data from Sanity:
 3.  Go to **API** → **CORS Origins**.
 4.  Add your new Vercel production URL (e.g., `https://your-project.vercel.app`) and check **Allow credentials**.
 
-## Step 5: Sanity Studio Deployment (Optional)
+## Step 5: Sanity Studio Deployment
 
-You can also deploy your Sanity Studio so you can edit content from the web:
+You can deploy your Sanity Studio so you can edit content from the web. You have two options:
 
+### Option A: Vercel (Recommended)
+1.  **New Vercel Project**: Create a new project in Vercel.
+2.  **Connect Repo**: Select the same GitHub repository.
+3.  **Root Directory**: Set the "Root Directory" to **`studio`**.
+4.  **Build Settings**:
+    *   Framework Preset: **Vite**.
+    *   Build Command: `npm run build`
+    *   Output Directory: `dist`
+5.  **Environment Variables**: Add these variables in Vercel for the Studio project:
+    *   `SANITY_STUDIO_PROJECT_ID`: `f0v0tp4d`
+    *   `SANITY_STUDIO_DATASET`: `production`
+6.  **Deploy**: Hit "Deploy". I've added a `studio/vercel.json` already to handle SPA routing.
+
+### Option B: Sanity Hosting
 1.  Open your terminal in the `studio` folder:
     ```bash
     cd studio
