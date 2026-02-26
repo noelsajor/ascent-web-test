@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 const portfolioItems = [
   {
     id: 'sana-honey',
@@ -40,9 +41,12 @@ const portfolioItems = [
       {portfolioItems.map(item => (
         <a href={item.url} target="_blank" rel="noopener noreferrer" class="portfolio-item reveal-item">
           <div class="portfolio-image">
-            <img 
+            <Image 
               src={item.image} 
               alt={item.imageAlt}
+              width={800}
+              height={450}
+              class="portfolio-img"
               loading="lazy"
             />
           </div>

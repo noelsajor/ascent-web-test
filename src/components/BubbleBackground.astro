@@ -128,14 +128,29 @@ const { interactive = true } = Astro.props;
 
       function initBubbles() {
         bubbles = [];
-        const bubbleCount = Math.floor((width * height) / 8000);
+        const isMobile = window.innerWidth < 768;
+        const density = isMobile ? 12000 : 8000;
+        const bubbleCount = Math.floor((width * height) / density);
         for (let i = 0; i < bubbleCount; i++) {
           bubbles.push(new Bubble(width, height));
         }
       }
 
       let lastTime = 0;
+      let isVisible = true;
+
+      const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+      }, { threshold: 0.1 });
+
+      observer.observe(container);
+
       function animate(currentTime: number) {
+        if (!isVisible) {
+          animationFrameId = requestAnimationFrame(animate);
+          return;
+        }
+
         const deltaTime = currentTime - lastTime;
         lastTime = currentTime;
         ctx!.clearRect(0, 0, width, height);

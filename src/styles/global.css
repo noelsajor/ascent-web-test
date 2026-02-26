@@ -4,7 +4,6 @@
    Headings will use Didot if installed on the user’s device,
    otherwise fall back to elegant serif alternatives.
    ========================= */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 * {
     margin: 0;
