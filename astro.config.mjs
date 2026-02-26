@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://ascentmgnt.com', // Replace with actual site URL
   integrations: [
-    // sitemap(),
+    sitemap(),
   ],
   output: 'static',
 });

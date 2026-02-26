@@ -10,7 +10,7 @@ export const client = projectId
   : null;
 
 export async function getAllPosts() {
-  const query = `*[_type == "post"] | order(publishedAt desc) {
+  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
     title,
     slug,
     mainImage,
@@ -38,7 +38,7 @@ export async function getPostBySlug(slug) {
 }
 
 export async function getLatestPosts(count = 3) {
-  const query = `*[_type == "post"] | order(publishedAt desc) [0...${count}] {
+  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) [0...${count}] {
     title,
     slug,
     mainImage,
