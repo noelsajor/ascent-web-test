@@ -27,9 +27,27 @@ export default {
             name: 'mainImage',
             title: 'Main image',
             type: 'image',
-            options: {
-                hotspot: true,
-            },
+            options: { hotspot: true },
+            fields: [
+              {
+                name: 'alt',
+                title: 'Alt text',
+                type: 'string',
+                description: 'Describe the image for accessibility and SEO.',
+                validation: (Rule) => Rule.required().min(8).warning('Alt text should be descriptive.'),
+              },
+                {
+                  name: 'caption',
+                  title: 'Caption',
+                  type: 'string',
+                },
+                {
+                  name: 'credit',
+                  title: 'Image credit',
+                  type: 'string',
+                },
+          ],
+          validation: (Rule) => Rule.required(),
         },
         {
             name: 'categories',
