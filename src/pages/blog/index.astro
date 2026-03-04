@@ -6,7 +6,11 @@ import { getAllPosts } from '../../lib/sanity';
 const posts = await getAllPosts().catch(() => []);
 ---
 
-<BaseLayout title="Blog | Ascent Mgnt" activePage="blog">
+<BaseLayout 
+  title="SEO Content & Search & Geo Specialist Insights | Ascent Blog" 
+  description="Expert takes on website optimization, social media management, and creative strategy. Real talk on building brands without the agency buzzwords."
+  activePage="blog"
+>
   <section class="portfolio">
     <div class="container">
       <div class="section-header reveal-item">
