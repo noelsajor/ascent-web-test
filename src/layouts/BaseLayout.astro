@@ -24,6 +24,17 @@ const { title, description, activePage, type } = Astro.props;
       name="google-site-verification"
       content="7r_mh6wY9bW0Bd_xCtQJXtWR_9TlEmcdv6qvR_t9_sc"
     />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRF9V8QJYR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NRF9V8QJYR");
+    </script>
   </head>
   <body>
     <Header activePage={activePage} />
