@@ -14,6 +14,9 @@ const CALENDLY_URL = 'https://calendly.com/noelsajor/new-meeting?hide_gdpr_banne
 
     <div class="form-wrapper">
       <form id="contact-form" class="contact-form reveal-item">
+        <!-- Anti-Spam Honeypot -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        
         <div class="form-group">
           <label for="name">Your Name</label>
           <input
@@ -89,7 +92,12 @@ const CALENDLY_URL = 'https://calendly.com/noelsajor/new-meeting?hide_gdpr_banne
       e.preventDefault();
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      console.log('Form submitted:', data);
+      
+      // Honeypot check
+      if (data._gotcha) {
+        return; // Silent fail for bots
+      }
+
       alert('Thank you! Form submitted successfully.');
       // Actual submission logic would go here
     });

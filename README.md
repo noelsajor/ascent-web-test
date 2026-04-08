@@ -1,40 +1,45 @@
-# Ascent Mgnt - Astro Migration (SSG)
+# Ascent Mgnt - SEO-First Marketing Template
 
-This is a migrated version of the Ascent Mgnt website, now powered by [Astro](https://astro.build/) for Static Site Generation (SSG) and [Sanity](https://www.sanity.io/) as a headless CMS for the blog.
+This repository acts as the **master blueprint** and cloneable architecture for building high-performance, SEO-first marketing websites. It is powered by [Astro](https://astro.build/) (Static Site Generation), [Sanity](https://www.sanity.io/) (Headless CMS), and Vanilla CSS.
+
+## 🤖 AI-Agent Cloning System
+
+If you are using an AI Agent (Cursor, Github Copilot, Gemini) to clone this repository for a new brand, please refer immediately to **[`docs/first-kick-prompt-template.md`](./docs/first-kick-prompt-template.md)**. It contains a copy-paste prompt to automatically execute a brand-clone using this architecture.
+
+You MUST also read **[`docs/seo-first-marketing-website.md`](./docs/seo-first-marketing-website.md)**, which serves as the overarching Architecture Guide and links out to strictly enforced engineering Standard Operating Procedures (SOPs) located in `docs/best-practices/`.
 
 ## Tech Stack
-- **Framework**: Astro (SSG)
-- **CMS**: Sanity (Headless)
-- **Styles**: Vanilla CSS (migrated from React)
-- **Interactions**: Vanilla JS (reveal-on-scroll, mobile menu, etc.)
-- **Deployment**: Vercel
+- **Framework**: Astro (SSG + Islands Architecture)
+- **CMS**: Sanity (v3 Headless)
+- **Styles**: Vanilla CSS (Global variables + Scoped modules)
+- **Interactions**: Vanilla JS (reveal-on-scroll, mobile menu, hydration)
+- **Deployment**: Vercel (Frontend) & Sanity Studio (Backend)
 
-## Local Development
+## Local Development Environment
 
 ### 1. Project Requirements
 - Node.js 18.x or higher
-- Sanity Project ID and Dataset
 
 ### 2. Environment Variables
-Create a `.env` file from `.env.example`:
+Create a `.env` file in the root from `.env.example`:
 ```bash
 cp .env.example .env
 ```
-Fill in your `PUBLIC_SANITY_PROJECT_ID` and other variables.
+Fill in your `PUBLIC_SANITY_PROJECT_ID` and dataset variables.
 
 ### 3. Install Dependencies
 ```bash
 npm install
 ```
 
-### 4. Run Development Server
+### 4. Run Frontend Development Server
 ```bash
 npm run dev
 ```
 The site will be available at `http://localhost:4321`.
 
-### 5. Sanity Studio
-To access the Sanity Studio locally:
+### 5. Run Sanity Studio (CMS)
+The CMS operates completely independently from the Astro frontend:
 ```bash
 cd studio
 npm install
@@ -42,32 +47,15 @@ npm run dev
 ```
 The studio will be available at `http://localhost:3333`.
 
-## Deployment (Vercel)
-
-### 1. Import Repository
-- Connect your GitHub/GitLab repository to Vercel.
-
-### 2. Build Settings
-- **Framework Preset**: Astro
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-
-### 3. Environment Variables
-Add the following environment variables in Vercel:
-- `PUBLIC_SANITY_PROJECT_ID`
-- `PUBLIC_SANITY_DATASET`
-- `PUBLIC_SANITY_API_VERSION`
-- `PUBLIC_SANITY_USE_CDN`
-
-### 4. Sitemap & SEO
-The sitemap is automatically generated at `/sitemap-index.xml`. Ensure your `astro.config.mjs` has the correct `site` URL.
-
 ## Folder Structure
-- `src/pages/`: Route definitions (Home, Work, Blog, etc.)
+- `docs/best-practices/`: Engineering SOPs and Guidelines (SEO, UX, Testing).
+- `src/pages/`: Route definitions (`/`, `/blog`, `/404.astro`, etc.)
 - `src/components/`: Reusable Astro components.
-- `src/layouts/`: Base layout for pages.
-- `src/lib/`: Sanity client and GROQ queries.
-- `src/styles/`: Global CSS.
-- `src/scripts/`: Shared vanilla JS logic.
+- `src/layouts/`: Base layout handling SEO, GA4, and Cookiebot.
+- `src/lib/`: Sanity client APIs and GROQ queries.
+- `src/styles/`: Global CSS tokens and resets.
 - `studio/`: Sanity CMS schema and configuration.
 - `public/`: Static assets (images, robots.txt, etc.)
+
+## Deployment
+For deployment instructions to Vercel and Sanity Cloud, see **`DEPLOYMENT_GUIDE.md`**.

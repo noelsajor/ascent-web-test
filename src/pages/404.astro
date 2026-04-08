@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const title = "Page Not Found | Ascent Mgnt";
+const description = "The page you are looking for doesn't exist or has been moved.";
+---
+
+<BaseLayout title={title} description={description} activePage="404">
+  <section class="error-404-section" style="min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: var(--spacing-xl) 20px;">
+    <div class="container reveal-item">
+      <h1 style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 700; color: var(--color-primary); margin-bottom: 1rem;">404</h1>
+      <h2 style="margin-bottom: 2rem;">Oops! We couldn't find that page.</h2>
+      <p style="max-width: 600px; margin: 0 auto 3rem auto; color: var(--text-muted);">
+        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. 
+      </p>
+      
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary" style="padding: 1rem 2rem; background: var(--color-primary); color: white; border-radius: var(--radius-md); text-decoration: none; font-weight: 500;">
+          Back to Home
+        </a>
+        <a href="/contact" class="btn btn-outline" style="padding: 1rem 2rem; border: 1px solid var(--color-primary); color: var(--color-primary); border-radius: var(--radius-md); text-decoration: none; font-weight: 500;">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
