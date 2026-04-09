@@ -11,21 +11,52 @@ const posts = await getAllPosts().catch(() => []);
   description="Expert takes on website optimization, social media management, and creative strategy. Real talk on building brands without the agency buzzwords."
   activePage="blog"
 >
-  <section class="portfolio">
+  <section class="py-24 md:py-32">
     <div class="container">
-      <div class="section-header reveal-item">
-        <h2>Blog</h2>
-        <p>Insights on brand building, content systems, and commerce execution.</p>
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-6 reveal-item">
+        <div>
+          <h1 class="text-4xl md:text-6xl font-heading font-bold mb-4 tracking-tight">Latest stories</h1>
+          <p class="text-lg text-muted max-w-xl">Insights on brand creation, content systems, and commerce execution.</p>
+        </div>
       </div>
 
-      <div class="portfolio-grid">
+      <div>
         {posts.length > 0 ? (
-          posts.map((post) => (
-            <BlogCard post={post} />
-          ))
+          <div class="flex flex-col gap-12 md:gap-16">
+            {posts.length >= 3 ? (
+              <>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                  {/* Featured Post */}
+                  <div class="lg:col-span-2">
+                    <BlogCard post={posts[0]} featured={true} />
+                  </div>
+                  {/* Stacked Side Posts */}
+                  <div class="flex flex-col gap-8 md:gap-12">
+                    <BlogCard post={posts[1]} />
+                    <BlogCard post={posts[2]} />
+                  </div>
+                </div>
+                
+                {/* Remaining Posts */}
+                {posts.length > 3 && (
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                    {posts.slice(3).map((post) => (
+                      <BlogCard post={post} />
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                {posts.map((post) => (
+                  <BlogCard post={post} />
+                ))}
+              </div>
+            )}
+          </div>
         ) : (
-          <div class="reveal-item">
-            <p>No posts found. Add some content in Sanity Studio!</p>
+          <div class="reveal-item text-center py-24 bg-surface rounded-3xl border border-line">
+            <p class="text-muted text-lg">No posts found. Add some content in Sanity Studio!</p>
           </div>
         )}
       </div>
