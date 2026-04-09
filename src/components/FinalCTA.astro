@@ -1,14 +1,39 @@
 ---
 ---
 
-<section>
+<section class="py-24 md:py-32" id="cta">
   <div class="container">
-    <div class="final-cta">
-      <h2>Ready to Stop Thinking and Start Executing?</h2>
-      <p>Fill out the short form, book a call, and we'll review your needs. Pricing estimate shared after the call.</p>
-      <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
-        Book a Call
-      </a>
+    <div class="relative bg-surface border border-line rounded-3xl p-10 md:p-20 text-center overflow-hidden reveal-item">
+      <!-- Subtle glow -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+        <div class="w-96 h-96 rounded-full bg-accent blur-[120px]"></div>
+      </div>
+
+      <div class="relative z-10">
+        <div class="inline-flex mb-6">
+          <span class="px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-full text-xs font-bold text-accent tracking-widest uppercase">
+            Let's Work Together
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 tracking-tight leading-[1.1]">
+          Ready to Stop Thinking<br class="hidden md:block" /> and Start Executing?
+        </h2>
+        <p class="text-lg text-muted mb-10 max-w-lg mx-auto leading-relaxed">
+          Fill out the short form, book a call, and we'll review your needs. Pricing estimate shared after the call.
+        </p>
+        <a
+          href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1"
+          class="btn-primary px-12 py-4 text-lg calendly-trigger"
+          role="button"
+          data-track="cta_click"
+          data-track-name="Footer Book Call"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a Call
+        </a>
+        <p class="mt-6 text-sm text-accent italic opacity-80">Limited spots monthly — we protect quality</p>
+      </div>
     </div>
   </div>
 </section>

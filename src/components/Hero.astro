@@ -3,41 +3,50 @@ import BubbleBackground from './BubbleBackground.astro';
 ---
 
 <BubbleBackground interactive={true}>
-  <section class="hero-inner" id="home">
+  <section class="py-24 md:py-32 relative overflow-hidden" id="home">
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge">Done-For-You Agency</span>
+      <div class="max-w-[800px] mx-auto text-center">
+        <div class="inline-flex mb-6 animate-fadeInUp">
+          <span class="px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-full text-xs font-bold text-accent tracking-widest uppercase backdrop-blur-sm">
+            Done-For-You Agency
+          </span>
         </div>
-        <h1>
-          Brand Creation &
-          <br />
-          Growth Package
+        
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-heading font-normal mb-8 tracking-tighter leading-[1.1]">
+          Brand Creation & <br class="hidden md:block" /> Growth Package
         </h1>
-        <p class="hero-subtitle">
+
+        <p class="text-lg md:text-xl text-muted mb-10 leading-relaxed max-w-2xl mx-auto">
           Done-for-you brand building from idea to execution. We create the brand, 
           build the content, run your social, and set up commerce that sells.
         </p>
-        <ul class="proof-points">
-          <li>We handle execution end-to-end</li>
-          <li>Content-first brand building</li>
-          <li>Social commerce ready (TikTok Shop + live shopping)</li>
+
+        <ul class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-12 text-sm text-muted">
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            Execution end-to-end
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            Content-first building
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            Social commerce ready
+          </li>
         </ul>
-        <div class="cta-group">
-          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn-primary px-10 py-4 text-lg calendly-trigger" role="button" data-track="cta_click" data-track-name="Hero Book Call" target="_blank" rel="noopener noreferrer">
             Book a Call
           </a>
-          <a href="/work" class="btn btn-secondary">View Work</a>
+          <a href="/work" class="btn-secondary px-10 py-4 text-lg" data-track="cta_click" data-track-name="Hero View Work">
+            View Work
+          </a>
         </div>
-        <p class="cta-note">Limited spots monthly — we protect quality</p>
+        
+        <p class="text-sm text-accent italic opacity-80">Limited spots monthly — we protect quality</p>
       </div>
     </div>
   </section>
 </BubbleBackground>
-
-<style>
-  /* Local overrides if needed, but keeping global CSS as primary source */
-  .hero-inner {
-    padding: var(--spacing-80) 0;
-  }
-</style>

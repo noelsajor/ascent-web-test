@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
+
+import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://ascentmgnt.com',
-  integrations: [sitemap()],
+  integrations: [tailwind({
+    configFile: './tailwind.config.js'
+  })],
   output: 'static',
 });

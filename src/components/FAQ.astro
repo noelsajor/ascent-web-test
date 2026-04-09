@@ -31,17 +31,38 @@ const faqs = [
 ];
 ---
 
-<section>
+<section class="py-24 md:py-32" id="faq">
   <div class="container">
-    <div class="section-header reveal-item">
-      <h2>Common Questions</h2>
+    <div class="text-center mb-16 md:mb-24 reveal-item">
+      <div class="inline-flex mb-4">
+        <span class="px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-full text-xs font-bold text-accent tracking-widest uppercase">
+          FAQ
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4 tracking-tight">Common Questions</h2>
+      <p class="text-lg text-muted max-w-xl mx-auto leading-relaxed">Everything you need to know about our approach and services.</p>
     </div>
-    <div class="faq-grid">
+
+    <div class="max-w-3xl mx-auto space-y-4">
       {faqs.map((faq) => (
-        <details>
-          <summary>{faq.question}</summary>
-          <div class="faq-content">
-            <p>{faq.answer}</p>
+        <details class="group bg-surface border border-line rounded-3xl overflow-hidden transition-all duration-300 hover:border-accent/40 reveal-item">
+          <summary class="flex justify-between items-center p-6 md:p-8 cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent/20">
+            <span class="text-lg font-bold text-text group-open:text-accent transition-colors">
+              {faq.question}
+            </span>
+            <div class="w-8 h-8 flex items-center justify-center rounded-full border border-line text-accent transition-transform duration-300 group-open:rotate-45">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+          </summary>
+          <div class="px-6 md:px-8 pb-8 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div class="pt-4 border-t border-line">
+              <p class="text-muted leading-relaxed italic">
+                {faq.answer}
+              </p>
+            </div>
           </div>
         </details>
       ))}

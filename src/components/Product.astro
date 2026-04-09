@@ -1,66 +1,99 @@
 ---
 ---
 
-<section class="product-section" id="product">
+<section class="py-24 md:py-32" id="product">
   <div class="container">
-    <div class="product-hero reveal-item">
-      <h1>Brand Creation & Growth Package</h1>
-      <p class="subtitle">The flagship done-for-you solution for building and scaling your brand</p>
+    <div class="py-16 md:py-24 bg-bg-1 border-b border-line text-center reveal-item rounded-3xl mb-12">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold mb-6 tracking-tight leading-tight">Brand Creation & <br /> Growth Package</h1>
+      <p class="text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">The flagship done-for-you solution for building and scaling your brand</p>
     </div>
-    <div class="product-grid">
-      <div class="product-block reveal-item">
-        <h2>What It Is</h2>
-        <p>A complete brand-building system that takes you from idea to execution. We create your brand identity, build your site, set up content systems, manage your social, and integrate commerce infrastructure like TikTok Shop.</p>
-        <p>You get a team that handles everything so you can focus on running your business.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 md:mb-20">
+      <div class="group bg-surface border border-line rounded-2xl p-8 md:p-12 reveal-item transition-all hover:border-accent/30">
+        <h2 class="text-3xl font-heading font-bold text-text mb-6">What It Is</h2>
+        <p class="text-lg text-muted leading-relaxed mb-6">A complete brand-building system that takes you from idea to execution. We create your brand identity, build your site, set up content systems, manage your social, and integrate commerce infrastructure like TikTok Shop.</p>
+        <p class="text-lg text-muted leading-relaxed">You get a team that handles everything so you can focus on running your business.</p>
       </div>
-      <div class="product-block reveal-item">
-        <h2>Who It's For</h2>
-        <p><strong>Perfect for:</strong></p>
-        <ul>
-          <li>New brands starting from zero</li>
-          <li>Existing brands needing a complete rebuild</li>
-          <li>Founders overwhelmed by managing multiple freelancers</li>
-          <li>Brands ready to show up consistently with quality</li>
-        </ul>
-        <p style="margin-top: var(--spacing-md)"><strong>Not for:</strong></p>
-        <ul>
-          <li>DIY founders who want to manage parts themselves</li>
-          <li>Large companies with internal teams</li>
-          <li>Brands looking for quick fixes or shortcuts</li>
-        </ul>
-      </div>
-    </div>
-    <div class="product-grid">
-      <div class="product-block reveal-item">
-        <h2>What You Get</h2>
-        <ul>
-          <li>Brand foundation: strategy, positioning, messaging</li>
-          <li>Visual identity: logo, typography, color systems</li>
-          <li>Packaging design and print-ready files</li>
-          <li>Shopify site: design, build, and optimization</li>
-          <li>Content strategy and templates</li>
-          <li>Social media setup and daily execution</li>
-          <li>TikTok Shop configuration and live shopping content</li>
-          <li>Ongoing creative direction and optimization</li>
-          <li>Monthly performance reviews and strategic adjustments</li>
-        </ul>
-      </div>
-      <div class="product-block reveal-item">
-        <h2>The Process</h2>
-        <p><strong>Week 1–2:</strong> Discovery, brand strategy, competitive audit</p>
-        <p><strong>Week 3–6:</strong> Visual identity creation, site build, content systems</p>
-        <p><strong>Week 7–8:</strong> Refinement, launch prep, social setup</p>
-        <p><strong>Week 9+:</strong> Launch, ongoing execution, content creation, optimization</p>
-        <p style="margin-top: var(--spacing-md)">Timeline varies based on scope. Most projects are 8–12 weeks to launch, then ongoing execution as needed.</p>
+
+      <div class="group bg-surface border border-line rounded-2xl p-8 md:p-12 reveal-item transition-all hover:border-accent/30">
+        <h2 class="text-3xl font-heading font-bold text-text mb-6">Who It's For</h2>
+        
+        <div class="mb-8">
+          <p class="text-sm font-bold text-accent uppercase tracking-widest mb-4">Perfect for:</p>
+          <ul class="space-y-3">
+            {['New brands starting from zero', 'Existing brands needing a complete rebuild', 'Founders overwhelmed by management', 'Brands ready for quality consistency'].map(item => (
+              <li class="flex items-center gap-3 text-sm text-muted">
+                <span class="text-accent font-bold">—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Not for:</p>
+          <ul class="space-y-3">
+            {['DIY founders wanting micro-management', 'Large companies with internal teams', 'Brands looking for quick shortcuts'].map(item => (
+              <li class="flex items-center gap-3 text-sm text-muted opacity-60">
+                <span class="text-gray-600 font-bold">—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="product-cta reveal-item">
-      <h2>Let's Talk</h2>
-      <p>Fill out the short form and book a call. We'll review your needs and send a pricing estimate after the call.</p>
-      <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 md:mb-20">
+      <div class="group bg-surface border border-line rounded-2xl p-8 md:p-12 reveal-item transition-all hover:border-accent/30">
+        <h2 class="text-3xl font-heading font-bold text-text mb-6">What You Get</h2>
+        <ul class="space-y-4">
+          {[
+            'Brand foundation: strategy, positioning, messaging',
+            'Visual identity: logo, typography, color systems',
+            'Packaging design and print-ready files',
+            'Shopify site: design, build, and optimization',
+            'Content strategy and templates',
+            'Social media setup and daily execution',
+            'TikTok Shop & live shopping configuration',
+            'Ongoing creative direction and optimization'
+          ].map(item => (
+            <li class="flex items-start gap-3 text-sm text-muted">
+              <span class="text-accent font-bold mt-0.5">—</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="group bg-surface border border-line rounded-2xl p-8 md:p-12 reveal-item transition-all hover:border-accent/30">
+        <h2 class="text-3xl font-heading font-bold text-text mb-6">The Process</h2>
+        <div class="space-y-8">
+          {[
+            { tag: 'Week 1–2', title: 'Discovery', desc: 'Brand strategy and competitive audit' },
+            { tag: 'Week 3–6', title: 'Identity & Build', desc: 'Visual identity creation and site build' },
+            { tag: 'Week 7–8', title: 'Refinement', desc: 'Launch prep and social setup' },
+            { tag: 'Week 9+', title: 'Launch', desc: 'Ongoing execution and optimization' }
+          ].map(step => (
+            <div class="relative pl-6 border-l border-line">
+              <div class="absolute -left-[5px] top-1.5 w-[10px] h-[10px] bg-accent rounded-full shadow-[0_0_10px_rgba(233,208,144,0.5)]"></div>
+              <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">{step.tag}</p>
+              <h4 class="text-lg font-bold text-text mb-1">{step.title}</h4>
+              <p class="text-sm text-muted leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-8 text-xs text-muted italic">Projects typically take 8–12 weeks to launch.</p>
+      </div>
+    </div>
+
+    <div class="text-center bg-bg-1 border border-line rounded-3xl p-12 md:p-20 reveal-item">
+      <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6 tracking-tight">Let's Talk</h2>
+      <p class="text-lg text-muted mb-10 max-w-xl mx-auto">Fill out the short form and book a call. We'll review your needs and send a pricing estimate after the call.</p>
+      <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn-primary px-12 py-4 text-lg calendly-trigger" role="button" target="_blank" rel="noopener noreferrer">
         Book a Call
       </a>
-      <p class="product-note">Pricing shared after reviewing your specific needs</p>
+      <p class="text-xs text-accent mt-6 italic opacity-80">Pricing shared after reviewing your specific needs</p>
     </div>
   </div>
 </section>

@@ -12,27 +12,27 @@ const navItems = [
 ];
 ---
 
-<header id="main-header">
-  <div class="header-inner">
-    <a href="/" class="logo" aria-label="Ascent Mgnt">
-      <img src="/assets/ascent_logo.svg" alt="Ascent Management logo" class="logo-img" />
+<header id="main-header" class="sticky top-0 z-50 transition-all duration-300 bg-bg-0/80 backdrop-blur-md border-b border-line">
+  <div class="container py-4 flex justify-between items-center">
+    <a href="/" class="flex items-center gap-3 transition-opacity hover:opacity-80" aria-label="Ascent Mgnt">
+      <img src="/assets/ascent_logo.svg" alt="Ascent Management logo" class="h-10 w-auto" />
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
-      <ul>
+    <nav class="hidden md:block">
+      <ul class="flex items-center gap-8">
         {navItems.map((item) => (
           <li>
             <a 
               href={item.href} 
-              class={activePage === item.key ? 'active' : ''}
+              class={`text-sm font-medium transition-colors hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-4 focus:ring-offset-bg-0 rounded-sm ${activePage === item.key ? 'text-accent' : 'text-muted'}`}
             >
               {item.label}
             </a>
           </li>
         ))}
         <li>
-          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
+          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn-primary py-2 px-5 text-sm calendly-trigger" role="button" target="_blank" rel="noopener noreferrer">
             Book a Call
           </a>
         </li>
@@ -42,41 +42,48 @@ const navItems = [
     <!-- Burger Menu Button -->
     <button
       id="burger-btn"
-      class="burger-menu"
+      class="group md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 bg-transparent border-none cursor-pointer z-50 relative"
       aria-label="Toggle mobile menu"
       aria-expanded="false"
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="w-6 h-0.5 bg-accent transition-all duration-300 group-[.active]:rotate-45 group-[.active]:translate-y-2"></span>
+      <span class="w-6 h-0.5 bg-accent transition-all duration-300 group-[.active]:opacity-0"></span>
+      <span class="w-6 h-0.5 bg-accent transition-all duration-300 group-[.active]:-rotate-45 group-[.active]:-translate-y-2"></span>
     </button>
   </div>
+</header>
 
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-overlay" class="mobile-menu-overlay" style="display: none;">
-    <div class="mobile-menu">
-      <nav class="mobile-nav">
-        <ul>
-          {navItems.map((item) => (
-            <li>
-              <a 
-                href={item.href} 
-                class={activePage === item.key ? 'active' : ''}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+<!-- Mobile Menu Overlay - Outside Header Stacking Context -->
+<div 
+  id="mobile-overlay" 
+  class="fixed inset-0 bg-bg-0 z-40 transition-all duration-500 opacity-0 pointer-events-none translate-x-full"
+  aria-hidden="true"
+>
+  <div class="container h-full flex flex-col pt-32 pb-12">
+    <nav class="flex-1">
+      <ul class="flex flex-col gap-6">
+        {navItems.map((item) => (
           <li>
-             <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
-              Book a Call
+            <a 
+              href={item.href} 
+              class={`text-4xl font-heading font-bold transition-colors hover:text-accent ${activePage === item.key ? 'text-accent' : 'text-text'}`}
+            >
+              {item.label}
             </a>
           </li>
-        </ul>
-      </nav>
+        ))}
+      </ul>
+    </nav>
+    <div class="mt-auto space-y-8">
+      <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn-primary w-full py-5 text-xl calendly-trigger" role="button" target="_blank" rel="noopener noreferrer">
+        Book a Call
+      </a>
+      <p class="text-center text-xs text-muted tracking-widest uppercase">
+        &copy; {new Date().getFullYear()} Ascent Management
+      </p>
     </div>
   </div>
-</header>
+</div>
 
 <script>
   const header = document.getElementById('main-header');
@@ -86,24 +93,28 @@ const navItems = [
   // Header scroll logic
   window.addEventListener('scroll', () => {
     if (window.pageYOffset >= 12) {
-      header?.classList.add('is-scrolled');
+      header?.classList.add('shadow-[0_4px_24px_rgba(0,0,0,0.4)]', 'bg-bg-0/95');
     } else {
-      header?.classList.remove('is-scrolled');
+      header?.classList.remove('shadow-[0_4px_24px_rgba(0,0,0,0.4)]', 'bg-bg-0/95');
     }
   }, { passive: true });
 
   // Mobile menu toggle logic
   function toggleMenu() {
     const isOpen = burgerBtn?.getAttribute('aria-expanded') === 'true';
-    burgerBtn?.setAttribute('aria-expanded', !isOpen);
-    burgerBtn?.classList.toggle('active');
+    const newState = !isOpen;
+    
+    burgerBtn?.setAttribute('aria-expanded', newState.toString());
+    burgerBtn?.classList.toggle('active', newState);
     
     if (mobileOverlay) {
-      if (!isOpen) {
-        mobileOverlay.style.display = 'block';
+      if (newState) {
+        mobileOverlay.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-full');
+        mobileOverlay.classList.add('opacity-100', 'pointer-events-auto', 'translate-x-0');
         document.body.style.overflow = 'hidden';
       } else {
-        mobileOverlay.style.display = 'none';
+        mobileOverlay.classList.add('opacity-0', 'pointer-events-none', 'translate-x-full');
+        mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto', 'translate-x-0');
         document.body.style.overflow = '';
       }
     }
@@ -111,10 +122,13 @@ const navItems = [
 
   burgerBtn?.addEventListener('click', toggleMenu);
   
-  mobileOverlay?.addEventListener('click', (e) => {
-    if (e.target === mobileOverlay) {
-      toggleMenu();
-    }
+  // Close menu when clicking links
+  mobileOverlay?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (burgerBtn?.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
   });
 
   // ESC key to close mobile menu
@@ -124,7 +138,7 @@ const navItems = [
     }
   });
 
-  // Calendly logic (minimal JS)
+  // Calendly logic
   const triggers = document.querySelectorAll('.calendly-trigger');
   triggers.forEach(trigger => {
     trigger.addEventListener('click', (e) => {
@@ -132,7 +146,7 @@ const navItems = [
       // @ts-ignore
       if (window.Calendly) {
         // @ts-ignore
-        window.Calendly.initPopupWidget({ url: (e.target as HTMLAnchorElement).href });
+        window.Calendly.initPopupWidget({ url: (e.currentTarget as HTMLAnchorElement).href });
       }
     });
   });

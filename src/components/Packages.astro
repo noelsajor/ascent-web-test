@@ -21,106 +21,137 @@ const enhancementItems = [
 ];
 ---
 
-<section class="packages-section" id="packages">
+<section class="py-24 md:py-32" id="packages">
   <div class="container">
-    <div class="section-header reveal-item">
-      <h2>Choose Your Package</h2>
-      <p>Two packages designed for different stages. Both focused on execution and clarity.</p>
+    <div class="text-center mb-16 md:mb-24 reveal-item">
+      <div class="inline-flex mb-4">
+        <span class="px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-full text-xs font-bold text-accent tracking-widest uppercase">
+          Pricing
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4 tracking-tight">Choose Your Package</h2>
+      <p class="text-lg text-muted max-w-2xl mx-auto">Two packages designed for different stages. Both focused on execution and clarity.</p>
     </div>
 
-    <div class="packages-grid">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- Creation Package -->
       <div
-        class="package-card featured reveal-item selected"
+        class="group package-card relative flex flex-col bg-surface border border-line rounded-3xl p-8 md:p-12 transition-all duration-500 hover:border-accent/40 reveal-item cursor-pointer ring-offset-4 ring-offset-bg-0 focus:ring-2 focus:ring-accent outline-none"
         data-package="creation"
         tabindex="0"
         role="button"
-        aria-pressed="true"
+        aria-pressed="false"
       >
-        <h3>Creation Package</h3>
-        <p class="package-subtitle">Build your brand from zero or rebuild it right</p>
-        <p class="package-for">For: New brands or complete rebuilds</p>
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent text-bg-0 text-[10px] font-bold tracking-widest uppercase rounded-full">
+          Flagship
+        </div>
+        
+        <h3 class="text-3xl font-heading font-semibold text-text mb-4">Creation Package</h3>
+        <p class="text-muted leading-relaxed mb-4">Build your brand from zero or rebuild it right</p>
+        <p class="text-sm font-bold text-accent mb-10">For: New brands or complete rebuilds</p>
 
-        <div class="package-includes-wrap">
-          <ul class="package-includes package-includes--desktop">
+        <div class="flex-1">
+          <ul class="space-y-3 mb-12 hidden lg:block">
             {creationItems.map((item) => (
-              <li>{item}</li>
+              <li class="flex items-center gap-3 text-sm text-muted">
+                <span class="text-accent font-bold">—</span>
+                {item}
+              </li>
             ))}
           </ul>
 
-          <div class="package-includes--mobile">
-            <ul class="package-includes">
+          <div class="lg:hidden">
+            <ul class="space-y-3 mb-4">
               {creationItems.slice(0, 4).map((item) => (
-                <li>{item}</li>
+                <li class="flex items-center gap-3 text-sm text-muted">
+                  <span class="text-accent font-bold">—</span>
+                  {item}
+                </li>
               ))}
             </ul>
-            <div class="package-includes-collapsible">
-              <ul class="package-includes">
+            <div class="package-includes-collapsible max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <ul class="space-y-3 py-3">
                 {creationItems.slice(4).map((item) => (
-                  <li>{item}</li>
+                  <li class="flex items-center gap-3 text-sm text-muted">
+                    <span class="text-accent font-bold">—</span>
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
-            <button type="button" class="package-includes-toggle" aria-expanded="false">
+            <button type="button" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:text-accent-2 transition-colors package-includes-toggle" aria-expanded="false">
               Show all included ({creationItems.length})
-              <span class="package-includes-chevron" aria-hidden="true">▾</span>
+              <span class="transition-transform duration-300">▾</span>
             </button>
           </div>
         </div>
 
-        <div class="package-outcome">
-          <strong>Outcome:</strong> A complete brand system that looks premium, consistent content across platforms,
-          and commerce infrastructure ready to sell.
+        <div class="mt-auto pt-10">
+          <div class="bg-bg-1/50 border border-line rounded-xl p-6 mb-8 text-sm leading-relaxed text-muted">
+            <span class="font-bold text-text">Outcome:</span> A complete brand system that looks premium, consistent content across platforms, and commerce infrastructure ready to sell.
+          </div>
+          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn-primary w-full py-4 text-center calendly-trigger" role="button" target="_blank" rel="noopener noreferrer">
+            Book a Call
+          </a>
         </div>
-        <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
-          Book a Call
-        </a>
       </div>
 
+      <!-- Enhancement Package -->
       <div
-        class="package-card reveal-item"
+        class="group package-card relative flex flex-col bg-surface border border-line rounded-3xl p-8 md:p-12 transition-all duration-500 hover:border-accent/40 reveal-item cursor-pointer ring-offset-4 ring-offset-bg-0 focus:ring-2 focus:ring-accent outline-none"
         data-package="enhancement"
         tabindex="0"
         role="button"
         aria-pressed="false"
       >
-        <h3>Enhancement Package</h3>
-        <p class="package-subtitle">Elevate an existing brand with execution and optimization</p>
-        <p class="package-for">For: Existing brands needing elevation</p>
+        <h3 class="text-3xl font-heading font-semibold text-text mb-4">Enhancement Package</h3>
+        <p class="text-muted leading-relaxed mb-4">Elevate an existing brand with execution and optimization</p>
+        <p class="text-sm font-bold text-accent mb-10">For: Existing brands needing elevation</p>
 
-        <div class="package-includes-wrap">
-          <ul class="package-includes package-includes--desktop">
+        <div class="flex-1">
+          <ul class="space-y-3 mb-12 hidden lg:block">
             {enhancementItems.map((item) => (
-              <li>{item}</li>
+              <li class="flex items-center gap-3 text-sm text-muted">
+                <span class="text-accent font-bold">—</span>
+                {item}
+              </li>
             ))}
           </ul>
 
-          <div class="package-includes--mobile">
-            <ul class="package-includes">
+          <div class="lg:hidden">
+            <ul class="space-y-3 mb-4">
               {enhancementItems.slice(0, 4).map((item) => (
-                <li>{item}</li>
+                <li class="flex items-center gap-3 text-sm text-muted">
+                  <span class="text-accent font-bold">—</span>
+                  {item}
+                </li>
               ))}
             </ul>
-            <div class="package-includes-collapsible">
-              <ul class="package-includes">
+            <div class="package-includes-collapsible max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <ul class="space-y-3 py-3">
                 {enhancementItems.slice(4).map((item) => (
-                  <li>{item}</li>
+                  <li class="flex items-center gap-3 text-sm text-muted">
+                    <span class="text-accent font-bold">—</span>
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
-            <button type="button" class="package-includes-toggle" aria-expanded="false">
+            <button type="button" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:text-accent-2 transition-colors package-includes-toggle" aria-expanded="false">
               Show all included ({enhancementItems.length})
-              <span class="package-includes-chevron" aria-hidden="true">▾</span>
+              <span class="transition-transform duration-300">▾</span>
             </button>
           </div>
         </div>
 
-        <div class="package-outcome">
-          <strong>Outcome:</strong> Your brand looks more premium, content is consistent, and you stop worrying about
-          execution. Clarity and momentum.
+        <div class="mt-auto pt-10">
+          <div class="bg-bg-1/50 border border-line rounded-xl p-6 mb-8 text-sm leading-relaxed text-muted">
+            <span class="font-bold text-text">Outcome:</span> Your brand looks more premium, content is consistent, and you stop worrying about execution. Clarity and momentum.
+          </div>
+          <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn-primary w-full py-4 text-center calendly-trigger" role="button" target="_blank" rel="noopener noreferrer">
+            Book a Call
+          </a>
         </div>
-        <a href="https://calendly.com/noelsajor/new-meeting?hide_gdpr_banner=1" class="btn calendly-trigger" role="button">
-          Book a Call
-        </a>
       </div>
     </div>
   </div>
@@ -134,10 +165,10 @@ const enhancementItems = [
       // Toggle selection logic
       card.addEventListener('click', () => {
         cards.forEach(c => {
-          c.classList.remove('selected');
+          c.classList.remove('selected', 'border-accent', 'shadow-[0_8px_32px_rgba(233,208,144,0.2)]');
           c.setAttribute('aria-pressed', 'false');
         });
-        card.classList.add('selected');
+        card.classList.add('selected', 'border-accent', 'shadow-[0_8px_32px_rgba(233,208,144,0.2)]');
         card.setAttribute('aria-pressed', 'true');
       });
 
@@ -145,8 +176,9 @@ const enhancementItems = [
       const toggleBtn = card.querySelector('.package-includes-toggle');
       const collapsible = card.querySelector('.package-includes-collapsible') as HTMLElement;
       const list = collapsible?.querySelector('ul');
+      const chevron = toggleBtn?.querySelector('span');
 
-      if (toggleBtn && collapsible && list) {
+      if (toggleBtn && collapsible && list && chevron) {
         toggleBtn.addEventListener('click', (e) => {
           e.stopPropagation(); // Prevent card selection toggle
           const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
@@ -157,10 +189,10 @@ const enhancementItems = [
           
           if (newExpanded) {
             collapsible.style.maxHeight = list.scrollHeight + 'px';
-            collapsible.classList.add('is-expanded');
+            chevron.style.transform = 'rotate(180deg)';
           } else {
             collapsible.style.maxHeight = '0px';
-            collapsible.classList.remove('is-expanded');
+            chevron.style.transform = 'rotate(0deg)';
           }
         });
       }
@@ -170,14 +202,3 @@ const enhancementItems = [
   initPackages();
   document.addEventListener('astro:after-swap', initPackages);
 </script>
-
-<style>
-  .package-includes-collapsible {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-  }
-  .package-includes-collapsible.is-expanded {
-    /* transition handled by inline style for exact height */
-  }
-</style>

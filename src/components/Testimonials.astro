@@ -1,5 +1,5 @@
 ---
-const testimonials = [
+const row1 = [
   {
     quote: "They took everything off my plate. I was juggling three freelancers and still stressed about consistency. Now I don't think about it — they just handle it.",
     author: "Sarah Chen",
@@ -11,26 +11,159 @@ const testimonials = [
     role: "Co-Founder, Home Goods"
   },
   {
-    quote: "I hired them because I didn't want to think anymore. Best decision. They execute, keep me updated, and I can focus on running the business instead of chasing creatives.",
+    quote: "I hired them because I didn't want to think anymore. Best decision. They execute, keep me updated, and I focus on running the business.",
     author: "Jennifer Park",
     role: "Owner, Fashion Brand"
+  },
+  {
+    quote: "Six months in and our TikTok presence went from zero to actual sales. They built the whole system and I barely had to do anything.",
+    author: "Daniel Morrow",
+    role: "Founder, Supplement Brand"
+  },
+  {
+    quote: "Honestly the best money I've spent on the brand. Everything looks premium, posts every day, and I stopped worrying about it completely.",
+    author: "Priya Nair",
+    role: "Owner, Apparel Brand"
+  }
+];
+
+const row2 = [
+  {
+    quote: "The brand identity they created is exactly what I had in my head but couldn't execute myself. Worth every penny.",
+    author: "Alex Torres",
+    role: "Founder, Wellness Brand"
+  },
+  {
+    quote: "They launched our Shopify store in 3 weeks. It looks better than brands spending 10x what we did. Genuinely impressed.",
+    author: "Lisa Grant",
+    role: "Co-Founder, Home Decor"
+  },
+  {
+    quote: "Two weeks into working with Ascent and we already had a content system running. I've never felt so ahead of schedule.",
+    author: "Ryan Choi",
+    role: "Founder, Tech Accessories"
+  },
+  {
+    quote: "I recommended them to two other founders immediately. The quality, communication, and results are all top tier.",
+    author: "Natasha Brooks",
+    role: "Owner, Beauty Brand"
+  },
+  {
+    quote: "Our social engagement tripled within 60 days. They know what content converts and they just execute it without drama.",
+    author: "Carlos Vega",
+    role: "Founder, Food & Beverage"
   }
 ];
 ---
 
-<section class="testimonials">
+<section class="py-24 md:py-32 overflow-hidden" id="testimonials">
   <div class="container">
-    <div class="section-header reveal-item">
-      <h2>What Clients Say</h2>
+    <div class="text-center mb-16 md:mb-24 reveal-item">
+      <div class="inline-flex mb-4">
+        <span class="px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-full text-xs font-bold text-accent tracking-widest uppercase">
+          Social Proof
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4 tracking-tight">What Clients Say</h2>
+      <p class="text-lg text-muted max-w-xl mx-auto leading-relaxed">Direct feedback from the founders we partner with.</p>
     </div>
-    <div class="testimonials-grid">
-      {testimonials.map((testimonial) => (
-        <div class="testimonial-card reveal-item">
-          <p class="testimonial-quote">"{testimonial.quote}"</p>
-          <p class="testimonial-author">{testimonial.author}</p>
-          <p class="testimonial-role">{testimonial.role}</p>
-        </div>
-      ))}
+  </div>
+
+  <!-- Marquee Rows -->
+  <div class="relative">
+    <!-- Edge fade masks -->
+    <div class="absolute inset-y-0 left-0 w-32 md:w-48 bg-gradient-to-r from-bg-0 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-32 md:w-48 bg-gradient-to-l from-bg-0 to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Row 1: Scrolls left -->
+    <div class="marquee-track mb-6" aria-hidden="true">
+      <div class="marquee-inner">
+        {[...row1, ...row1].map((t) => (
+          <div class="marquee-card group bg-surface border border-line rounded-3xl p-6 md:p-8 transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5">
+            <div class="mb-4 text-accent/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-3c0-1.105.895-2 2-2h3c1.105 0 2 .895 2 2v3c0 1.105-.895 2-2 2h-3c-1.105 0-2-.895-2-2zm0 0C14.017 17.134 17.151 14 21.017 14v-2C16.599 12 13.017 15.582 13.017 20v1h1zM3 21v-3c0-1.105.895-2 2-2h3c1.105 0 2 .895 2 2v3c0 1.105-.895 2-2 2H5c-1.105 0-2-.895-2-2zm0 0C3 17.134 6.134 14 10 14v-2C5.582 12 2 15.582 2 20v1h1z"/>
+              </svg>
+            </div>
+            <p class="text-base leading-relaxed text-text/80 mb-6 italic">"{t.quote}"</p>
+            <div>
+              <p class="font-bold text-sm text-text group-hover:text-accent transition-colors">{t.author}</p>
+              <p class="text-[11px] text-accent font-semibold uppercase tracking-widest mt-1 opacity-70">{t.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Row 2: Scrolls right (reverse) -->
+    <div class="marquee-track marquee-reverse" aria-hidden="true">
+      <div class="marquee-inner">
+        {[...row2, ...row2].map((t) => (
+          <div class="marquee-card group bg-surface border border-line rounded-3xl p-6 md:p-8 transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5">
+            <div class="mb-4 text-accent/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-3c0-1.105.895-2 2-2h3c1.105 0 2 .895 2 2v3c0 1.105-.895 2-2 2h-3c-1.105 0-2-.895-2-2zm0 0C14.017 17.134 17.151 14 21.017 14v-2C16.599 12 13.017 15.582 13.017 20v1h1zM3 21v-3c0-1.105.895-2 2-2h3c1.105 0 2 .895 2 2v3c0 1.105-.895 2-2 2H5c-1.105 0-2-.895-2-2zm0 0C3 17.134 6.134 14 10 14v-2C5.582 12 2 15.582 2 20v1h1z"/>
+              </svg>
+            </div>
+            <p class="text-base leading-relaxed text-text/80 mb-6 italic">"{t.quote}"</p>
+            <div>
+              <p class="font-bold text-sm text-text group-hover:text-accent transition-colors">{t.author}</p>
+              <p class="text-[11px] text-accent font-semibold uppercase tracking-widest mt-1 opacity-70">{t.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .marquee-track {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee-inner {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  .marquee-reverse .marquee-inner {
+    animation: marquee-scroll-reverse 45s linear infinite;
+  }
+
+  .marquee-card {
+    width: 320px;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .marquee-card {
+      width: 380px;
+    }
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-scroll-reverse {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+
+  /* Pause on hover for accessibility */
+  .marquee-track:hover .marquee-inner {
+    animation-play-state: paused;
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-inner {
+      animation: none;
+    }
+  }
+</style>
