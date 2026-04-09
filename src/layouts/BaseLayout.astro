@@ -32,9 +32,11 @@ const { title, description, activePage, type } = Astro.props;
       gtag('js', new Date());
       gtag('config', 'G-NRF9V8QJYR');
     </script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="58f15ed1-c576-4eef-b520-7d858bf813be" data-blockingmode="auto" type="text/javascript"></script>
+    {import.meta.env.PROD && (
+      <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="58f15ed1-c576-4eef-b520-7d858bf813be" data-blockingmode="auto" type="text/javascript"></script>
+    )}
   </head>
-  <body>
+  <body class="font-body leading-[1.75] text-text bg-bg-0 text-[17px] antialiased">
     <Header activePage={activePage} />
     <main id="main">
       <slot />
